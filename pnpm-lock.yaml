@@ -14,6 +14,12 @@ importers:
       '@fontsource/ibm-plex-mono':
         specifier: ^5.3.0
         version: 5.3.0
+      '@fontsource/lilita-one':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/nunito-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
       astro:
         specifier: ^5.0.0
         version: 5.18.2(rollup@4.65.1)(typescript@5.9.3)
@@ -381,6 +387,12 @@ packages:
 
   '@fontsource/ibm-plex-mono@5.3.0':
     resolution: {integrity: sha512-eTgnZjZEGk1QtD3ZstF+Vclo2HLAni8YMy34/DxllwZvyz1lR/1RF/xTiAquOBO7MvqBx8D2Ig2WCPMVfdZu7Q==}
+
+  '@fontsource/lilita-one@5.3.0':
+    resolution: {integrity: sha512-bNW3tD+m5pOsAQpW/NvtRbFthFe+B73hDJK2DLLCFCtF+1p+UMBgo7ibxdcb9Sftr06LKAVbt080wiMdSqGbOg==}
+
+  '@fontsource/nunito-sans@5.3.0':
+    resolution: {integrity: sha512-CctNhebQ2YYJUwVMCAkHexQg7yedfz9s8JzaETALyc9QIQuDFRlNTWXux9H5PsNLgptPkrzRDomAdLJt1sDFpQ==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2024,6 +2036,10 @@ snapshots:
   '@fontsource/gloock@5.3.0': {}
 
   '@fontsource/ibm-plex-mono@5.3.0': {}
+
+  '@fontsource/lilita-one@5.3.0': {}
+
+  '@fontsource/nunito-sans@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

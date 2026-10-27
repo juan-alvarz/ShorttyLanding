@@ -25,23 +25,23 @@ const [before, selected, after] = t.hero.headline;
   </nav>
 
   <div class="wrap intro" id="top">
-    <h1>
-      <span>{before}</span>
-      <span class="selection" data-measure>
-        {selected}
-        <i class="handle"></i><i class="handle"></i><i class="handle"></i><i class="handle"></i>
-        <span class="size" aria-hidden="true">— × —</span>
-      </span>
-      <span>{after}</span>
-    </h1>
-    <div class="side">
+    <div class="head viewfinder ears">
+      <h1>
+        <span>{before}</span>
+        <span class="selection" data-measure>
+          {selected}
+          <i class="handle"></i><i class="handle"></i><i class="handle"></i><i class="handle"></i>
+          <span class="size" aria-hidden="true">— × —</span>
+        </span>
+        <span>{after}</span>
+      </h1>
       <p class="lead">{t.hero.lead}</p>
       <p class="actions">
         <a class="button" href={RELEASES}>{t.hero.download} ↓</a>
         <a class="button ghost" href="#install">{t.hero.install}</a>
       </p>
-      <p class="hint" aria-hidden="true">+ {t.hero.hint}</p>
     </div>
+    <p class="hint" aria-hidden="true">+ {t.hero.hint}</p>
   </div>
 
   <figure class="shot wrap">
@@ -116,50 +116,44 @@ const [before, selected, after] = t.hero.headline;
 </script>
 
 <style>
-  .hero {
-    position: relative;
-    cursor: crosshair;
-    background: linear-gradient(var(--primary) 0 72%, var(--dark) 72%);
-    color: var(--white);
-  }
+  .hero { position: relative; cursor: crosshair; background: linear-gradient(var(--light) 0 74%, var(--dark) 74%); color: var(--dark); }
   .hero a, .hero nav { cursor: pointer; }
 
-  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; cursor: default; }
-  .brand { display: flex; align-items: center; gap: 10px; font: 600 1.05rem/1 var(--mono); text-decoration: none; }
-  .brand :global(img) { width: 36px; height: 36px; }
-  nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; cursor: default; }
+  .brand { display: flex; align-items: center; gap: 12px; font: 400 1.7rem/1 var(--display); text-decoration: none; }
+  .brand :global(img) { width: 44px; height: 44px; }
+  nav ul { display: flex; align-items: center; gap: 26px; list-style: none; margin: 0; padding: 0; font-weight: 700; }
   nav ul a:not(.button) { text-decoration: none; }
-  nav ul a:not(.button):hover { color: var(--dark); }
-  nav .button { padding: 12px 18px; }
-  nav .button:hover { background: var(--dark); color: var(--white); }
+  nav .button { padding: 12px 18px; font-size: 1.1rem; }
 
-  .intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    align-items: end;
-    gap: 48px;
-    padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 88px);
+  .intro { display: flex; flex-direction: column; align-items: center; padding-block: clamp(80px, 11vw, 140px) clamp(48px, 6vw, 72px); }
+  .head {
+    --ear: clamp(56px, 9vw, 120px);
+    --ear-color: var(--accent);
+    width: min(100%, 980px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px);
+    --w: 8px;
+    --len: clamp(40px, 7vw, 96px);
   }
-  h1 { font: var(--step-4)/0.92 var(--display); letter-spacing: -0.035em; }
-  h1 > span { display: block; width: fit-content; }
-  h1 .selection { margin-block: 0.08em 0.3em; padding-inline: 0.06em; }
-  h1 .size { font-size: 0.8rem; }
+  .head::before, .head::after { top: calc(var(--ear) * -0.9); }
+  h1 { font: 400 var(--step-4)/0.95 var(--display); display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3em 0.22em; }
+  h1 .selection { padding-inline: 0.06em; color: var(--accent); }
+  .lead { margin: 40px auto 0; color: var(--on-light-muted); max-width: 44ch; }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px; margin-top: 32px; }
+  .hint { margin-top: 20px; color: var(--on-light-muted); font: 0.8rem var(--mono); }
 
-  .side { display: flex; flex-direction: column; gap: 28px; }
-  .side .lead { margin: 0; color: var(--white); }
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-  .hint { color: var(--on-primary-muted); font-size: 0.8rem; letter-spacing: 0.04em; }
+  .shot { margin-top: 0; margin-bottom: 0; padding-bottom: clamp(56px, 8vw, 104px); }
+  .shot :global(img) { width: 100%; }
+  figcaption { margin-top: 14px; color: var(--on-dark-muted); font: 0.8rem var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
 
-  .shot { margin-top: 0; margin-bottom: 0; padding-bottom: clamp(48px, 7vw, 96px); }
-  .shot :global(img) { width: 100%; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.6); }
-  figcaption { margin-top: 14px; color: var(--on-dark-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
-
-  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 255 255 / 0.06); }
-  .hero :global(.try) { pointer-events: auto; position: absolute; left: -1px; top: calc(100% + 34px); padding: 6px 10px; background: var(--white); color: var(--dark); font: 600 0.8rem/1 var(--mono); text-decoration: none; white-space: nowrap; }
-  .hero :global(.try:hover) { background: var(--dark); color: var(--white); }
+  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 107 61 / 0.08); }
+  .hero :global(.try) { pointer-events: auto; position: absolute; left: -3px; top: calc(100% + 40px); padding: 6px 10px; background: var(--dark); color: var(--white); font: 400 1rem/1 var(--display); text-decoration: none; white-space: nowrap; }
 
   @media (max-width: 900px) {
-    .intro { grid-template-columns: minmax(0, 1fr); }
     .optional { display: none; }
     .hint { display: none; }
   }
