@@ -40,20 +40,19 @@ const images = [classic, twoRows, sidebars, canvasFirst];
 
 <style>
   .tabs { margin-top: 56px; }
-  .tablist { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 32px; }
+  .tablist { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-bottom: 32px; }
   label { cursor: pointer; }
   input { position: absolute; opacity: 0; pointer-events: none; }
-  label span { display: block; padding: 12px 18px; background: var(--light-raised); font-weight: 500; }
-  label:hover span { background: var(--dark); color: var(--white); }
-  input:checked + span { background: var(--accent); color: var(--dark); }
-  input:focus-visible + span { outline: 2px solid var(--dark); outline-offset: 2px; }
+  label span { display: block; padding-block: 6px; font: italic 400 1.5rem/1.2 var(--display); color: var(--on-light-muted); }
+  label:hover span { color: var(--dark); }
+  input:checked + span { color: var(--accent); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+  input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 4px; }
 
   .panel { display: none; margin: 0; }
   .tabs:has(input[value='0']:checked) .panel[data-index='0'],
   .tabs:has(input[value='1']:checked) .panel[data-index='1'],
   .tabs:has(input[value='2']:checked) .panel[data-index='2'],
   .tabs:has(input[value='3']:checked) .panel[data-index='3'] { display: block; }
-  .viewfinder { --c: var(--dark); }
   .panel :global(img) { width: 100%; }
-  figcaption { margin-top: 18px; color: var(--on-light-muted); max-width: 60ch; }
+  figcaption { margin-top: 18px; color: var(--on-light-muted); max-width: 60ch; font-style: italic; }
 </style>
