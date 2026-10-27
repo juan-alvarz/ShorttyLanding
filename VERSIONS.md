@@ -52,3 +52,9 @@ For each version branch: look at screenshots/hero.jpg, full.jpg and mobile.jpg, 
 for overlaps, clipped text, low-contrast text, horizontal scroll, broken images or fonts. Fix only real defects, keep the
 version's direction, re-run `NODE_PATH=$(npm root -g) pnpm screenshot`, commit "Fix: ..." on that branch, push.
 Log what was checked and fixed here.
+
+## Disk image window (Shortty repo)
+
+Five styled install windows for the release `.dmg`, each a PR into `main` of juan-alvarz/Shortty, sharing
+`Scripts/make-dmg.sh`: https://github.com/juan-alvarz/Shortty/pull/2 (cobalt), /pull/3 (neon), /pull/4 (minimal),
+/pull/5 (pastel), /pull/6 (blueprint). Not run on macOS yet; needs one real `Scripts/make-dmg.sh` run to confirm.
