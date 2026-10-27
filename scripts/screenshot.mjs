@@ -25,8 +25,11 @@ try {
   for (const [name, width, height] of [['desktop', 1440, 900], ['mobile', 390, 844]]) {
     const page = await browser.newPage({ viewport: { width, height } });
     await page.goto(URL, { waitUntil: 'networkidle' });
-    // Scroll through once so lazy images load.
+    // Load every image now, then scroll through once so anything else lazy shows up.
     await page.evaluate(async () => {
+      const images = [...document.images];
+      images.forEach((img) => (img.loading = 'eager'));
+      await Promise.all(images.map((img) => img.decode().catch(() => {})));
       for (let y = 0; y < document.body.scrollHeight; y += 400) {
         scrollTo(0, y);
         await new Promise((r) => setTimeout(r, 60));

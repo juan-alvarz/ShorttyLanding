@@ -2,7 +2,7 @@
 import { useTranslations } from '../i18n';
 const t = useTranslations(Astro.currentLocale).edit;
 ---
-<section class="band ink" id="edit">
+<section class="band raised" id="edit">
   <div class="wrap">
     <span class="label">{t.label}</span>
     <h2>{t.title}</h2>
@@ -29,7 +29,7 @@ const t = useTranslations(Astro.currentLocale).edit;
     column-gap: 18px;
     row-gap: 4px;
     padding: 20px;
-    background: var(--ink-raised);
+    background: var(--white);
   }
   .keys { grid-row: span 2; display: flex; gap: 4px; }
   kbd {
@@ -37,11 +37,11 @@ const t = useTranslations(Astro.currentLocale).edit;
     place-items: center;
     width: 44px;
     height: 44px;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--ink);
+    color: var(--white);
     font: 600 1.05rem/1 var(--mono);
-    box-shadow: inset 0 -4px 0 var(--paper-raised);
+    box-shadow: inset 0 -4px 0 var(--cobalt);
   }
-  li:hover kbd { background: var(--orange); box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.18); }
-  p { color: var(--on-ink-muted); font-size: 0.85rem; }
+  li:hover kbd { background: var(--cobalt); box-shadow: inset 0 -4px 0 var(--ink); }
+  p { color: var(--on-paper-muted); font-size: 0.92rem; }
 </style>

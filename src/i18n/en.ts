@@ -21,7 +21,7 @@ export const en = {
     lead: 'Shortty is a free screenshot tool for macOS. Grab any part of the screen, mark it up without flattening a thing, and send it on its way.',
     download: 'Download for Mac',
     install: 'How to install',
-    hint: 'Drag anywhere on this blue to try a selection',
+    hint: 'Drag anywhere up here to try a selection',
     tryIt: 'Now do it for real',
     shotAlt: 'The Shortty editor: blur, arrows, a spotlight, Live Text and the recent captures bar on a screenshot of a GitHub page',
     shotLabel: 'editor · classic layout',

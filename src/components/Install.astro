@@ -54,7 +54,7 @@ const update = 'git pull && Scripts/install.sh';
 
 <style>
   .grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 64px; margin-top: 72px; }
-  h3 { font: var(--step-2)/1.1 var(--display); margin-bottom: 28px; }
+  h3 { font: 800 var(--step-2)/1.1 var(--display); letter-spacing: -0.03em; margin-bottom: 28px; }
 
   ol { list-style: none; counter-reset: step; margin: 0 0 32px; padding: 0; display: grid; gap: 4px; }
   li {
@@ -66,7 +66,7 @@ const update = 'git pull && Scripts/install.sh';
     background: var(--ink-raised);
     color: var(--on-ink-muted);
   }
-  li::before { content: counter(step, decimal-leading-zero); color: var(--orange); font-weight: 600; }
+  li::before { content: counter(step, decimal-leading-zero); color: var(--orange); font: 600 0.95rem var(--mono); }
   li :global(strong), li :global(a) { color: var(--white); }
   li :global(code), .note :global(code) { color: var(--white); }
 
