@@ -2,7 +2,7 @@
 import { useTranslations } from '../i18n';
 const t = useTranslations(Astro.currentLocale).edit;
 ---
-<section class="band dark" id="edit">
+<section class="band light" id="edit">
   <div class="wrap">
     <span class="label">{t.label}</span>
     <h2>{t.title}</h2>
@@ -20,28 +20,14 @@ const t = useTranslations(Astro.currentLocale).edit;
 </section>
 
 <style>
-  ul { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 64px 0 0; padding: 0; }
-  li {
-    flex: 1 1 250px;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    column-gap: 18px;
-    row-gap: 4px;
-    padding: 20px;
-    background: var(--dark-raised);
-  }
+  ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; list-style: none; margin: 56px 0 0; padding: 0; }
+  li { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 14px; padding: 18px; background: rgb(188 208 248 / 0.06); }
   .keys { grid-row: span 2; display: flex; gap: 4px; }
-  kbd {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    background: var(--light);
-    color: var(--dark);
-    font: 600 1.05rem/1 var(--mono);
-    box-shadow: inset 0 -4px 0 var(--light-raised);
-  }
-  li:hover kbd { background: var(--accent); box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.18); }
-  p { color: var(--on-dark-muted); font-size: 0.85rem; }
+  kbd { display: grid; place-items: center; width: 42px; height: 42px; font: 700 1.4rem/1 var(--display); color: var(--white); outline: 1px dashed var(--blue-300); outline-offset: -4px; }
+  li:hover kbd { background: var(--white); color: var(--blue-900); outline-color: transparent; }
+  h3 { font-size: 1.3rem; }
+  p { color: var(--blue-200); font-size: 0.92rem; }
+
+  @media (max-width: 1000px) { ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { ul { grid-template-columns: minmax(0, 1fr); } }
 </style>
