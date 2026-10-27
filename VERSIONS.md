@@ -32,7 +32,7 @@ Gotchas:
 - [x] 08 pastel: Arc pastel bands (lilac, mint, peach), friendly display face. https://github.com/juan-alvarz/ShorttyLanding/pull/8
 - [x] 09 swiss: grotesk, red/black/white, huge type, strict grid. https://github.com/juan-alvarz/ShorttyLanding/pull/9
 - [x] 10 dither: Nous-style dithered imagery generated at build time. https://github.com/juan-alvarz/ShorttyLanding/pull/10
-- [ ] 11 ticker: kinetic type, marquees of capture modes and tools.
+- [x] 11 ticker: kinetic type, marquees of capture modes and tools. https://github.com/juan-alvarz/ShorttyLanding/pull/11
 - [ ] 12 teal: deep teal with hot pink accents.
 - [ ] 13 crt: scanlines, phosphor glow, pixel-terminal headings.
 - [ ] 14 pixel: 8-bit pixel font, playful blocky UI.
