@@ -66,7 +66,7 @@ const update = 'git pull && Scripts/install.sh';
     background: var(--dark-raised);
     color: var(--on-dark-muted);
   }
-  li::before { content: counter(step, decimal-leading-zero); color: var(--accent); font-weight: 600; }
+  li::before { content: counter(step, decimal-leading-zero); color: var(--primary); font-weight: 600; }
   li :global(strong), li :global(a) { color: var(--white); }
   li :global(code), .note :global(code) { color: var(--white); }
 
@@ -86,7 +86,7 @@ const update = 'git pull && Scripts/install.sh';
     font: 500 0.75rem/1 var(--mono);
     cursor: pointer;
   }
-  button:hover { background: var(--accent); color: var(--dark); }
+  button:hover { background: var(--primary); color: var(--dark); }
 
   @media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
 </style>

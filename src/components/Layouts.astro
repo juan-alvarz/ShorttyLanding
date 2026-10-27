@@ -45,7 +45,7 @@ const images = [classic, twoRows, sidebars, canvasFirst];
   input { position: absolute; opacity: 0; pointer-events: none; }
   label span { display: block; padding: 12px 18px; background: var(--light-raised); font-weight: 500; }
   label:hover span { background: var(--dark); color: var(--white); }
-  input:checked + span { background: var(--accent); color: var(--dark); }
+  input:checked + span { background: var(--primary); color: var(--dark); }
   input:focus-visible + span { outline: 2px solid var(--dark); outline-offset: 2px; }
 
   .panel { display: none; margin: 0; }
@@ -53,7 +53,7 @@ const images = [classic, twoRows, sidebars, canvasFirst];
   .tabs:has(input[value='1']:checked) .panel[data-index='1'],
   .tabs:has(input[value='2']:checked) .panel[data-index='2'],
   .tabs:has(input[value='3']:checked) .panel[data-index='3'] { display: block; }
-  .viewfinder { --c: var(--dark); }
+  .viewfinder { --c: var(--primary); }
   .panel :global(img) { width: 100%; }
   figcaption { margin-top: 18px; color: var(--on-light-muted); max-width: 60ch; }
 </style>

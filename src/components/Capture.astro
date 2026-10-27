@@ -30,9 +30,10 @@ const t = useTranslations(Astro.currentLocale).capture;
     gap: 24px;
     padding: 18px 20px;
     background: var(--light-raised);
+    box-shadow: inset 6px 0 0 var(--primary);
   }
-  dl > div:hover { background: var(--dark); color: var(--white); }
-  dl > div:hover dd { color: var(--on-dark-muted); }
+  dl > div:hover { background: var(--primary); }
+  dl > div:hover dd { color: var(--on-primary); }
   dt { font-weight: 600; }
   dd { margin: 0; color: var(--on-light-muted); }
 
