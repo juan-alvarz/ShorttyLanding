@@ -14,6 +14,15 @@ importers:
       '@fontsource/ibm-plex-mono':
         specifier: ^5.3.0
         version: 5.3.0
+      '@fontsource/lexend':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/pixelify-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/silkscreen':
+        specifier: ^5.3.0
+        version: 5.3.0
       astro:
         specifier: ^5.0.0
         version: 5.18.2(rollup@4.65.1)(typescript@5.9.3)
@@ -381,6 +390,15 @@ packages:
 
   '@fontsource/ibm-plex-mono@5.3.0':
     resolution: {integrity: sha512-eTgnZjZEGk1QtD3ZstF+Vclo2HLAni8YMy34/DxllwZvyz1lR/1RF/xTiAquOBO7MvqBx8D2Ig2WCPMVfdZu7Q==}
+
+  '@fontsource/lexend@5.3.0':
+    resolution: {integrity: sha512-4igbsooynC6xwfagkAW6eo9JMrw8ALFGkWn1YChYmYchufMJSPgWihD+cy5ruX5YX/gDk/gllcl1Oj7q6KUZmw==}
+
+  '@fontsource/pixelify-sans@5.3.0':
+    resolution: {integrity: sha512-4RCe9nXbi7wUu5+H0FNX1sgPZ2kJ1MmY1uTkEfvQIzzqhoS8zGKJaJfdK8oreE0OU+5gM+NdurFi3H3FJRBvyw==}
+
+  '@fontsource/silkscreen@5.3.0':
+    resolution: {integrity: sha512-M1NQ3LQH0LFNvyFPd/piHEGMImPPtpLglNnLC6Vdcq9kL0jNIOtTQmksAWCc4enbDnw1OnIpZtjNEfRqYm/QmA==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2024,6 +2042,12 @@ snapshots:
   '@fontsource/gloock@5.3.0': {}
 
   '@fontsource/ibm-plex-mono@5.3.0': {}
+
+  '@fontsource/lexend@5.3.0': {}
+
+  '@fontsource/pixelify-sans@5.3.0': {}
+
+  '@fontsource/silkscreen@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

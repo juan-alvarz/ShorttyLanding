@@ -6,7 +6,7 @@ import { toAscii } from '../lib/ascii';
 const t = useTranslations(Astro.currentLocale).footer;
 const cat = await toAscii('public/icon.svg', 64, 30);
 ---
-<footer class="band primary">
+<footer class="band plum">
   <div class="wrap grid">
     <pre aria-hidden="true">{cat}</pre>
     <div class="text">
@@ -23,14 +23,14 @@ const cat = await toAscii('public/icon.svg', 64, 30);
 </footer>
 
 <style>
-  footer { padding-block: 80px; }
+  footer { padding-block: 72px; }
   .grid { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: 48px; }
-  pre { margin: 0; color: var(--white); font-size: clamp(6px, 1.3vw, 13px); line-height: 1.1; font-weight: 600; }
-  .text { display: grid; gap: 6px; color: var(--on-primary-muted); }
-  .name { font: var(--step-3)/1 var(--display); color: var(--white); margin-bottom: 12px; }
-  ul { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; margin: 18px 0 0; padding: 0; }
+  pre { margin: 0; color: var(--p8-yellow); font-size: clamp(6px, 1.2vw, 12px); line-height: 1.1; font-weight: 400; }
+  .text { display: grid; gap: 6px; color: var(--p8-peach); }
+  .name { font: 700 var(--step-3)/1 var(--display); color: var(--white); text-shadow: 4px 4px 0 var(--p8-black); margin-bottom: 12px; }
+  .name::after { content: ' ♥'; color: var(--p8-red); }
+  ul { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; margin: 18px 0 0; padding: 0; font: 400 0.85rem/1 var(--pixel); text-transform: uppercase; }
   a { color: var(--white); }
-  a:hover { color: var(--dark); }
 
   @media (max-width: 700px) { .grid { grid-template-columns: minmax(0, 1fr); } }
 </style>
