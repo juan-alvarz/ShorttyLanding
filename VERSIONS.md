@@ -40,5 +40,5 @@ Gotchas:
 - [x] 16 monoblue: everything in tints of one blue. https://github.com/juan-alvarz/ShorttyLanding/pull/16
 - [x] 17 cat: mascot-forward, the cat and its viewfinder ears everywhere. https://github.com/juan-alvarz/ShorttyLanding/pull/17
 - [x] 18 story: sticky scroll storytelling, one feature per screen. https://github.com/juan-alvarz/ShorttyLanding/pull/18
-- [ ] 19 mesh: Arc-like gradient mesh backgrounds, frosted square panels.
+- [x] 19 mesh: Arc-like gradient mesh backgrounds, frosted square panels. https://github.com/juan-alvarz/ShorttyLanding/pull/19
 - [ ] 20 sunset: orange to pink to violet gradient bands, white type.
