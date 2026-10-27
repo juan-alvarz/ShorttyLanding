@@ -74,3 +74,19 @@ edge and text contrast (automated, Playwright), plus a visual pass over every ph
 - 09 swiss: unselected layout tabs were light grey on white (1.7:1); now mid grey (3.4:1, large bold text).
 
 Left for check-in 2: the same checks for 11–20 (their install fix is already in).
+
+### Check-in 2 (2026-10-27, ~15:10 UTC): versions 11–20
+
+Same checks as check-in 1 (automated at 1440 and 390 wide, plus a visual pass over every phone screenshot). The install
+command fix from check-in 1 was already in all ten.
+
+- No overflow, broken images or font failures on any of 11–20.
+- 15 minimal: size tag was white on orange (2.8:1) and the hero hint pale grey (2.1:1); now dark tag text and the
+  page's muted grey.
+- 16 monoblue: on phones the "/" separators in the specs row started wrapped lines; they now end the line instead.
+- 18 story: the orange "And also" label on the light section was 2.6:1; labels on light sections use a deeper orange.
+- 20 sunset: secondary text on the light pink tiles was about 2:1 (the automated check skips gradients, the visual
+  pass caught it). Tiles now darken the sky instead of lightening it, and secondary text is 90% white.
+- Left as is: the footer ASCII cats are low-contrast by design and hidden from screen readers.
+
+QA pass complete for all 20 versions.
