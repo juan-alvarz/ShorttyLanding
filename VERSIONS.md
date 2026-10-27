@@ -22,7 +22,7 @@ sharp corners, no card borders. Each version is a real design direction, not a r
 - [x] 03 heat: orange-dominant, loud Arc energy, ink type on orange. https://github.com/juan-alvarz/ShorttyLanding/pull/3
 - [x] 04 terminal: Nous Hermes terminal. All mono (headlines too), ink, ASCII cat hero, prompt-style labels. https://github.com/juan-alvarz/ShorttyLanding/pull/4
 - [x] 05 editorial: magazine. Big serif, full-bleed screenshots, generous whitespace. https://github.com/juan-alvarz/ShorttyLanding/pull/5
-- [ ] 06 split: 50/50 split-screen hero, sticky screenshot beside scrolling content.
+- [x] 06 split: 50/50 split-screen hero, sticky screenshot beside scrolling content. https://github.com/juan-alvarz/ShorttyLanding/pull/6
 - [ ] 07 neon: the icon's neon glow. Ink with glowing orange strokes and text.
 - [ ] 08 pastel: Arc pastel bands (lilac, mint, peach), friendly display face.
 - [ ] 09 swiss: grotesk, red/black/white, huge type, strict grid.
