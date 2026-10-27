@@ -21,18 +21,19 @@ const t = useTranslations(Astro.currentLocale).capture;
 </section>
 
 <style>
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 64px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 64px; }
   .intro { position: sticky; top: 32px; align-self: start; }
-  dl { margin: 0; display: grid; gap: 4px; }
+  dl { margin: 0; display: grid; gap: 0; counter-reset: fig; }
   dl > div {
+    counter-increment: fig;
     display: grid;
-    grid-template-columns: 13ch minmax(0, 1fr);
-    gap: 24px;
-    padding: 18px 20px;
-    background: var(--light-raised);
+    grid-template-columns: 4ch 15ch minmax(0, 1fr);
+    gap: 16px;
+    padding: 14px 0;
+    background: linear-gradient(90deg, var(--dark) 50%, transparent 0) bottom / 6px 1px repeat-x;
   }
-  dl > div:hover { background: var(--dark); color: var(--white); }
-  dl > div:hover dd { color: var(--on-dark-muted); }
+  dl > div::before { content: counter(fig, decimal-leading-zero); color: var(--accent); }
+  dl > div:hover { background-color: var(--light-raised); }
   dt { font-weight: 600; }
   dd { margin: 0; color: var(--on-light-muted); }
 
@@ -40,7 +41,8 @@ const t = useTranslations(Astro.currentLocale).capture;
     .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .intro { position: static; }
   }
-  @media (max-width: 520px) {
-    dl > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  @media (max-width: 560px) {
+    dl > div { grid-template-columns: 4ch minmax(0, 1fr); }
+    dd { grid-column: 2; }
   }
 </style>
