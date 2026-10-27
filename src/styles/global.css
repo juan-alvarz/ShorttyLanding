@@ -87,6 +87,8 @@ code, pre { font-family: var(--mono); }
   color: var(--accent);
 }
 .label::before { content: ''; width: 28px; height: 1px; background: currentColor; }
+/* On light sections the orange is too pale for small text; a deeper shade keeps it readable. */
+.light .label { color: #b4441a; }
 
 .lead { font-size: var(--step-1); max-width: 46ch; margin-top: 22px; }
 .dark .lead, .primary .lead, .story .lead { color: var(--on-dark-muted); }
