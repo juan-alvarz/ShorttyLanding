@@ -35,7 +35,7 @@ Gotchas:
 - [x] 11 ticker: kinetic type, marquees of capture modes and tools. https://github.com/juan-alvarz/ShorttyLanding/pull/11
 - [x] 12 teal: deep teal with hot pink accents. https://github.com/juan-alvarz/ShorttyLanding/pull/12
 - [x] 13 crt: scanlines, phosphor glow, pixel-terminal headings. https://github.com/juan-alvarz/ShorttyLanding/pull/13
-- [ ] 14 pixel: 8-bit pixel font, playful blocky UI.
+- [x] 14 pixel: 8-bit pixel font, playful blocky UI. https://github.com/juan-alvarz/ShorttyLanding/pull/14
 - [ ] 15 minimal: white, black, one orange. Maximum whitespace.
 - [ ] 16 monoblue: everything in tints of one blue.
 - [ ] 17 cat: mascot-forward, the cat and its viewfinder ears everywhere.
