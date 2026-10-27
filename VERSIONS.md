@@ -15,6 +15,11 @@ sharp corners, no card borders. Each version is a real design direction, not a r
    (`https://github.com/juan-alvarz/ShorttyLanding/blob/versions/NN-name/screenshots/hero.jpg?raw=true`, etc.)
 6. Tick it below (on branch `claude/quirky-wright-0xirxd`) with the PR link, commit and push.
 
+Gotchas:
+- Some newer Fontsource packages export `./*` as `./*.css`; import them without `.css`
+  (e.g. `@fontsource/big-shoulders-display/latin-800`) or the build fails to resolve them.
+- `pnpm screenshot` forces all images to load; still look at full.jpg and mobile.jpg before committing.
+
 ## Directions
 
 - [x] 01 cobalt: the approved design. Cobalt/paper/ink bands, Gloock + Plex Mono, viewfinder corners. https://github.com/juan-alvarz/ShorttyLanding/pull/1
