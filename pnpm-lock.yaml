@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/albert-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource/gloock':
         specifier: ^5.3.0
         version: 5.3.0
@@ -375,6 +378,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource/albert-sans@5.3.0':
+    resolution: {integrity: sha512-sxMOb01R+xYfFjc708tKJOElC7qhXyjvF3hWojhX1c+AzoFO18dnbh1hPEkblwvYsY+7Chrs08y80K72omSg7Q==}
 
   '@fontsource/gloock@5.3.0':
     resolution: {integrity: sha512-vGvBRavw/y3aTCsz1uTNydQjCfRLGNOnSpmn/Qs3EZDqPAKBg6Id4OdHGnWLWXQ57IkzuNk/e9+KdMze+azOxA==}
@@ -2020,6 +2026,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.7':
     optional: true
+
+  '@fontsource/albert-sans@5.3.0': {}
 
   '@fontsource/gloock@5.3.0': {}
 

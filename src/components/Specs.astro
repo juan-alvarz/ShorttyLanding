@@ -9,19 +9,18 @@ const t = useTranslations(Astro.currentLocale);
 </div>
 
 <style>
-  .specs { background: var(--dark); padding-bottom: 8px; }
+  .specs { background: var(--dark); color: var(--white); }
   ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0;
     list-style: none;
     margin-block: 0;
-    padding-block: 28px;
-    color: var(--on-dark-muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    padding-block: 0;
+    font: 700 0.95rem/1 var(--display);
+    text-transform: lowercase;
   }
-  li { display: flex; align-items: center; gap: 10px; }
-  li::before { content: ''; width: 6px; height: 6px; background: var(--accent); }
+  li { padding: 22px 0; }
+  li:nth-child(odd) { color: var(--white); }
+  li:nth-child(even) { color: var(--on-dark-muted); }
 </style>
