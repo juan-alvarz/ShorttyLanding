@@ -21,5 +21,5 @@ const t = useTranslations(Astro.currentLocale);
     text-transform: uppercase;
     color: var(--blue-200);
   }
-  li + li::before { content: '/'; margin-inline: 16px; color: var(--blue-700); }
+  li:not(:last-child)::after { content: '/'; margin-inline: 16px; color: var(--blue-700); }
 </style>
