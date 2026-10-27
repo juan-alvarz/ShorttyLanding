@@ -36,7 +36,7 @@ Gotchas:
 - [x] 12 teal: deep teal with hot pink accents. https://github.com/juan-alvarz/ShorttyLanding/pull/12
 - [x] 13 crt: scanlines, phosphor glow, pixel-terminal headings. https://github.com/juan-alvarz/ShorttyLanding/pull/13
 - [x] 14 pixel: 8-bit pixel font, playful blocky UI. https://github.com/juan-alvarz/ShorttyLanding/pull/14
-- [ ] 15 minimal: white, black, one orange. Maximum whitespace.
+- [x] 15 minimal: white, black, one orange. Maximum whitespace. https://github.com/juan-alvarz/ShorttyLanding/pull/15
 - [ ] 16 monoblue: everything in tints of one blue.
 - [ ] 17 cat: mascot-forward, the cat and its viewfinder ears everywhere.
 - [ ] 18 story: sticky scroll storytelling, one feature per screen.
