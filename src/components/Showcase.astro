@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.png';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale).hero;
+---
+<figure class="band dark">
+  <div class="wrap">
+    <div class="viewfinder">
+      <Image src={hero} alt={t.shotAlt} widths={[640, 1080, 1600]} sizes="(min-width: 1040px) 58vw, 100vw" loading="eager" />
+    </div>
+    <figcaption>{t.shotLabel}</figcaption>
+  </div>
+</figure>
+
+<style>
+  figure { margin: 0; padding-block: 48px; }
+  figure :global(img) { width: 100%; }
+  figcaption { margin-top: 14px; color: var(--on-dark-muted); font: 0.75rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+</style>

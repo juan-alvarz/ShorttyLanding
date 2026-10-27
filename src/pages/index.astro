@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Showcase from '../components/Showcase.astro';
 import Specs from '../components/Specs.astro';
 import Capture from '../components/Capture.astro';
 import Edit from '../components/Edit.astro';
@@ -10,14 +11,28 @@ import Install from '../components/Install.astro';
 import Footer from '../components/Footer.astro';
 ---
 <Base>
-  <Hero />
-  <main>
-    <Specs />
-    <Capture />
-    <Edit />
-    <Extras />
-    <Layouts />
-    <Install />
-  </main>
-  <Footer />
+  <div class="split">
+    <Hero />
+    <div class="scroll">
+      <main>
+        <Showcase />
+        <Specs />
+        <Capture />
+        <Edit />
+        <Extras />
+        <Layouts />
+        <Install />
+      </main>
+      <Footer />
+    </div>
+  </div>
 </Base>
+
+<style>
+  /* Left: the sticky hero panel. Right: everything else, sized by its own width. */
+  .split { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .scroll { container-type: inline-size; min-width: 0; }
+  @media (min-width: 1040px) {
+    .split { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+  }
+</style>

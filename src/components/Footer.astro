@@ -6,7 +6,7 @@ import { toAscii } from '../lib/ascii';
 const t = useTranslations(Astro.currentLocale).footer;
 const cat = await toAscii('public/icon.svg', 64, 30);
 ---
-<footer class="band primary">
+<footer class="band dark">
   <div class="wrap grid">
     <pre aria-hidden="true">{cat}</pre>
     <div class="text">
@@ -25,12 +25,12 @@ const cat = await toAscii('public/icon.svg', 64, 30);
 <style>
   footer { padding-block: 80px; }
   .grid { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: 48px; }
-  pre { margin: 0; color: var(--white); font-size: clamp(6px, 1.3vw, 13px); line-height: 1.1; font-weight: 600; }
-  .text { display: grid; gap: 6px; color: var(--on-primary-muted); }
-  .name { font: var(--step-3)/1 var(--display); color: var(--white); margin-bottom: 12px; }
+  pre { margin: 0; color: var(--accent); font-size: clamp(6px, 1.3vw, 13px); line-height: 1.1; font-weight: 600; }
+  .text { display: grid; gap: 6px; color: var(--on-dark-muted); }
+  .name { font: 800 var(--step-3)/1 var(--display); font-stretch: 125%; text-transform: uppercase; color: var(--white); margin-bottom: 12px; }
   ul { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; margin: 18px 0 0; padding: 0; }
   a { color: var(--white); }
-  a:hover { color: var(--dark); }
+  a:hover { color: var(--accent); }
 
-  @media (max-width: 700px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  @container (max-width: 700px) { .grid { grid-template-columns: minmax(0, 1fr); } }
 </style>
