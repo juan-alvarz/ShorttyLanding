@@ -7,6 +7,7 @@ Landing page for [Shortty](https://github.com/juan-alvarz/Shortty), built with [
 pnpm install
 pnpm dev       # http://localhost:4321
 pnpm build     # output in dist/
+pnpm screenshot  # build, then save screenshots/ (needs Playwright with Chromium)
 ```
 
 ## Where things are
