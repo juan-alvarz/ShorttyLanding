@@ -148,7 +148,7 @@ code, pre { font-family: var(--mono); }
   font: 500 0.75rem/1 var(--mono);
   letter-spacing: 0.04em;
   background: var(--accent);
-  color: var(--white);
+  color: var(--dark);
 }
 
 @media (prefers-reduced-motion: reduce) {
