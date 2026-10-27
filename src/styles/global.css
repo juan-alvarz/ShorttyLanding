@@ -25,10 +25,10 @@
   --light: #ffffff;
   --accent: #ffffff;
   --white: #ffffff;
-  --tile: rgb(255 255 255 / 0.12);
-  --tile-strong: rgb(255 255 255 / 0.2);
-  --on-dark-muted: rgb(255 255 255 / 0.74);
-  --on-light-muted: rgb(255 255 255 / 0.74);
+  --tile: rgb(27 16 70 / 0.24);
+  --tile-strong: rgb(27 16 70 / 0.36);
+  --on-dark-muted: rgb(255 255 255 / 0.9);
+  --on-light-muted: rgb(255 255 255 / 0.9);
 
   /* Type */
   --display: 'Sora', 'Avenir Next', 'Helvetica Neue', sans-serif;
