@@ -156,7 +156,7 @@ code, pre { font-family: var(--mono); }
   font-style: normal;
   letter-spacing: 0.04em;
   background: var(--accent);
-  color: var(--white);
+  color: var(--primary-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {
