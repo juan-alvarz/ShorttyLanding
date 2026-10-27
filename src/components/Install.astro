@@ -7,7 +7,7 @@ const unquarantine = 'xattr -dr com.apple.quarantine /Applications/Shortty.app';
 const build = `brew install xcodegen\ngit clone ${REPO}.git\ncd Shortty\nScripts/install.sh`;
 const update = 'git pull && Scripts/install.sh';
 ---
-<section class="band ink" id="install">
+<section class="band dark" id="install">
   <div class="wrap">
     <span class="label">{t.label}</span>
     <h2>{t.title}</h2>
@@ -63,17 +63,17 @@ const update = 'git pull && Scripts/install.sh';
     grid-template-columns: 2.2em minmax(0, 1fr);
     gap: 12px;
     padding: 14px 18px;
-    background: var(--ink-raised);
-    color: var(--on-ink-muted);
+    background: var(--dark-raised);
+    color: var(--on-dark-muted);
   }
-  li::before { content: counter(step, decimal-leading-zero); color: var(--orange); font-weight: 600; }
+  li::before { content: counter(step, decimal-leading-zero); color: var(--accent); font-weight: 600; }
   li :global(strong), li :global(a) { color: var(--white); }
   li :global(code), .note :global(code) { color: var(--white); }
 
-  .note { color: var(--on-ink-muted); margin-bottom: 14px; }
+  .note { color: var(--on-dark-muted); margin-bottom: 14px; }
   .note :global(a) { color: var(--white); }
 
-  .code { position: relative; margin-bottom: 28px; background: var(--paper); color: var(--ink); }
+  .code { position: relative; margin-bottom: 28px; background: var(--light); color: var(--dark); }
   pre { margin: 0; padding: 18px 20px; padding-right: 88px; overflow-x: auto; font-size: 0.88rem; line-height: 1.7; }
   button {
     position: absolute;
@@ -81,12 +81,12 @@ const update = 'git pull && Scripts/install.sh';
     right: 10px;
     padding: 6px 10px;
     border: 0;
-    background: var(--ink);
+    background: var(--dark);
     color: var(--white);
     font: 500 0.75rem/1 var(--mono);
     cursor: pointer;
   }
-  button:hover { background: var(--orange); color: var(--ink); }
+  button:hover { background: var(--accent); color: var(--dark); }
 
   @media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
 </style>

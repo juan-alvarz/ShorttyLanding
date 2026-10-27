@@ -1,6 +1,6 @@
 /*
-  Layout: the page is a capture surface. Full-width color bands (cobalt, paper, ink),
-  orange viewfinder corners and selection frames taken from the app icon and the
+  Layout: the page is a capture surface. Full-width color bands (primary, light, dark),
+  accent viewfinder corners and selection frames taken from the app icon and the
   app's own selection UI. Sharp corners, no card borders.
 */
 @import '@fontsource/gloock/latin-400.css';
@@ -11,18 +11,18 @@
 :root {
   color-scheme: dark;
 
-  /* Color */
-  --cobalt: #2b3bf0;
-  --cobalt-deep: #1f2bc4;
-  --ink: #0b0d1c;
-  --ink-raised: #161a36;
-  --paper: #eceef5;
-  --paper-raised: #dfe2ee;
-  --orange: #ff6b3d;
+  /* Color, named by role. Here: primary = cobalt, dark = ink, light = paper, accent = Shortty orange. */
+  --primary: #2b3bf0;
+  --primary-deep: #1f2bc4;
+  --dark: #0b0d1c;
+  --dark-raised: #161a36;
+  --light: #eceef5;
+  --light-raised: #dfe2ee;
+  --accent: #ff6b3d;
   --white: #ffffff;
-  --on-cobalt-muted: #c6cbff;
-  --on-ink-muted: #8f96c4;
-  --on-paper-muted: #525877;
+  --on-primary-muted: #c6cbff;
+  --on-dark-muted: #8f96c4;
+  --on-light-muted: #525877;
 
   /* Type */
   --display: 'Gloock', 'Iowan Old Style', Georgia, serif;
@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--ink);
+  background: var(--dark);
   color: var(--white);
   font: 400 var(--step-0)/1.65 var(--mono);
   -webkit-font-smoothing: antialiased;
@@ -50,8 +50,8 @@ body {
 
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
-a:hover { color: var(--orange); }
-:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
 h2 { font: var(--step-3)/1 var(--display); letter-spacing: -0.02em; }
@@ -63,9 +63,9 @@ code, pre { font-family: var(--mono); }
 
 /* A full-width color band with a centered inner column. */
 .band { padding-block: clamp(72px, 10vw, 140px); }
-.band.cobalt { background: var(--cobalt); color: var(--white); }
-.band.paper { background: var(--paper); color: var(--ink); }
-.band.ink { background: var(--ink); color: var(--white); }
+.band.primary { background: var(--primary); color: var(--white); }
+.band.light { background: var(--light); color: var(--dark); }
+.band.dark { background: var(--dark); color: var(--white); }
 
 .wrap {
   max-width: var(--max);
@@ -74,7 +74,7 @@ code, pre { font-family: var(--mono); }
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 
-/* Section eyebrow: an orange selection handle and a lowercase mono word. */
+/* Section eyebrow: an accent selection handle and a lowercase mono word. */
 .label {
   display: inline-flex;
   align-items: center;
@@ -84,12 +84,12 @@ code, pre { font-family: var(--mono); }
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.label::before { content: ''; width: 8px; height: 8px; background: var(--orange); }
+.label::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
 
 .lead { font-size: var(--step-1); max-width: 52ch; margin-top: 24px; }
-.paper .lead { color: var(--on-paper-muted); }
-.ink .lead { color: var(--on-ink-muted); }
-.cobalt .lead { color: var(--on-cobalt-muted); }
+.light .lead { color: var(--on-light-muted); }
+.dark .lead { color: var(--on-dark-muted); }
+.primary .lead { color: var(--on-primary-muted); }
 
 .button {
   display: inline-flex;
@@ -98,16 +98,16 @@ code, pre { font-family: var(--mono); }
   padding: 16px 24px;
   font: 600 var(--step-0)/1 var(--mono);
   text-decoration: none;
-  background: var(--orange);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--dark);
 }
-.button:hover { background: var(--white); color: var(--ink); }
+.button:hover { background: var(--white); color: var(--dark); }
 .button.ghost { background: transparent; color: inherit; padding-inline: 4px; text-decoration: underline; }
-.button.ghost:hover { color: var(--orange); }
+.button.ghost:hover { color: var(--accent); }
 
-/* Orange viewfinder corners around whatever it wraps, like the app icon. */
+/* Accent viewfinder corners around whatever it wraps, like the app icon. */
 .viewfinder {
-  --c: var(--orange);
+  --c: var(--accent);
   --len: clamp(18px, 3vw, 36px);
   --w: 3px;
   padding: clamp(10px, 1.6vw, 18px);
@@ -126,14 +126,14 @@ code, pre { font-family: var(--mono); }
 /* A selection rectangle with square handles and a size tag, like Shortty's own. */
 .selection {
   position: relative;
-  outline: 1px solid var(--orange);
+  outline: 1px solid var(--accent);
 }
 .selection > .handle {
   position: absolute;
   width: 9px;
   height: 9px;
   background: var(--white);
-  outline: 1px solid var(--orange);
+  outline: 1px solid var(--accent);
 }
 .selection > .handle:nth-of-type(1) { top: -5px; left: -5px; }
 .selection > .handle:nth-of-type(2) { top: -5px; right: -5px; }
@@ -147,8 +147,8 @@ code, pre { font-family: var(--mono); }
   white-space: nowrap;
   font: 500 0.75rem/1 var(--mono);
   letter-spacing: 0.04em;
-  background: var(--orange);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--dark);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -9,7 +9,7 @@ const t = useTranslations(Astro.currentLocale);
 </div>
 
 <style>
-  .specs { background: var(--ink); padding-bottom: 8px; }
+  .specs { background: var(--dark); padding-bottom: 8px; }
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -17,11 +17,11 @@ const t = useTranslations(Astro.currentLocale);
     list-style: none;
     margin-block: 0;
     padding-block: 28px;
-    color: var(--on-ink-muted);
+    color: var(--on-dark-muted);
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
   li { display: flex; align-items: center; gap: 10px; }
-  li::before { content: ''; width: 6px; height: 6px; background: var(--orange); }
+  li::before { content: ''; width: 6px; height: 6px; background: var(--accent); }
 </style>

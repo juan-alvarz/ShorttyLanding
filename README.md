@@ -26,6 +26,7 @@ pnpm screenshot  # build, then save screenshots/ (needs Playwright with Chromium
 
 ## Design
 
-Flat color bands (cobalt, paper, ink), sharp corners, no card borders. The orange viewfinder corners and selection
+Colors are named by role in `global.css` (`--primary`, `--light`, `--dark`, `--accent`), so a new palette is a
+change of values there. Flat color bands (cobalt, paper, ink), sharp corners, no card borders. The orange viewfinder corners and selection
 frames come from the app icon and the app's own selection UI. Fonts are self-hosted from Fontsource: Gloock for
 headings, IBM Plex Mono for everything else. No analytics.

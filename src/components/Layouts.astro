@@ -10,7 +10,7 @@ const t = useTranslations(Astro.currentLocale).layouts;
 // Same order as t.layouts.items.
 const images = [classic, twoRows, sidebars, canvasFirst];
 ---
-<section class="band paper" id="layouts">
+<section class="band light" id="layouts">
   <div class="wrap">
     <span class="label">{t.label}</span>
     <h2>{t.title}</h2>
@@ -43,17 +43,17 @@ const images = [classic, twoRows, sidebars, canvasFirst];
   .tablist { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 32px; }
   label { cursor: pointer; }
   input { position: absolute; opacity: 0; pointer-events: none; }
-  label span { display: block; padding: 12px 18px; background: var(--paper-raised); font-weight: 500; }
-  label:hover span { background: var(--ink); color: var(--white); }
-  input:checked + span { background: var(--orange); color: var(--ink); }
-  input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
+  label span { display: block; padding: 12px 18px; background: var(--light-raised); font-weight: 500; }
+  label:hover span { background: var(--dark); color: var(--white); }
+  input:checked + span { background: var(--accent); color: var(--dark); }
+  input:focus-visible + span { outline: 2px solid var(--dark); outline-offset: 2px; }
 
   .panel { display: none; margin: 0; }
   .tabs:has(input[value='0']:checked) .panel[data-index='0'],
   .tabs:has(input[value='1']:checked) .panel[data-index='1'],
   .tabs:has(input[value='2']:checked) .panel[data-index='2'],
   .tabs:has(input[value='3']:checked) .panel[data-index='3'] { display: block; }
-  .viewfinder { --c: var(--ink); }
+  .viewfinder { --c: var(--dark); }
   .panel :global(img) { width: 100%; }
-  figcaption { margin-top: 18px; color: var(--on-paper-muted); max-width: 60ch; }
+  figcaption { margin-top: 18px; color: var(--on-light-muted); max-width: 60ch; }
 </style>
