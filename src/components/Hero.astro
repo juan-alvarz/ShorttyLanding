@@ -174,4 +174,9 @@ const [before, selected, after] = t.hero.headline;
     .optional { display: none; }
     .hint { display: none; }
   }
+
+  /* On phones the headline lines sit close together: leave room for the size tag under the frame. */
+  @media (max-width: 600px) {
+    h1 .selection { margin-bottom: 40px; }
+  }
 </style>
