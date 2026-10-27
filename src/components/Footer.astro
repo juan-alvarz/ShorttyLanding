@@ -1,14 +1,16 @@
 ---
 import { REPO, LICENSE } from '../config';
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.currentLocale).footer;
 ---
 <footer>
   <div class="wrap">
-    <p>Shortty is free and open source under the <a href={LICENSE}>MIT license</a>.</p>
-    <p><a href={REPO}>Source on GitHub</a> · <a href={`${REPO}/issues`}>Report an issue</a></p>
+    <p>{t.license} <a href={LICENSE}>{t.licenseLink}</a>.</p>
+    <p><a href={REPO}>{t.source}</a> · <a href={`${REPO}/issues`}>{t.issues}</a></p>
   </div>
 </footer>
 
 <style>
-  footer { border-top: 1px solid var(--border); padding: 40px 0; color: var(--muted); text-align: center; font-size: 0.95rem; }
-  footer p { margin: 0 0 0.4em; }
+  footer { background: var(--bg-alt); padding: 48px 0; color: var(--muted); font: 0.9rem var(--mono); }
+  footer p { margin: 0 0 0.5em; }
 </style>

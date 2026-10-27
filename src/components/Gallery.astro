@@ -4,22 +4,20 @@ import classic from '../assets/layout-classic.png';
 import twoRows from '../assets/layout-two-rows.png';
 import sidebars from '../assets/layout-sidebars.png';
 import canvasFirst from '../assets/layout-canvas-first.png';
+import { useTranslations } from '../i18n';
 
-const layouts = [
-  ['Classic', classic],
-  ['Two rows', twoRows],
-  ['Sidebars', sidebars],
-  ['Canvas first', canvasFirst],
-];
+const t = useTranslations(Astro.currentLocale).gallery;
+const images = [classic, twoRows, sidebars, canvasFirst];
 ---
 <section class="alt" id="layouts">
   <div class="wrap">
-    <h2>Make the editor yours</h2>
-    <p class="lead">Pick the toolbar layout that fits how you work. Shortcuts, colors and behavior are customizable too.</p>
+    <span class="label">{t.label}</span>
+    <h2>{t.title}</h2>
+    <p class="lead">{t.lead}</p>
     <div class="grid">
-      {layouts.map(([name, img]) => (
+      {t.layouts.map((name, i) => (
         <figure>
-          <Image src={img} alt={`The ${name} editor layout`} widths={[480, 800]} sizes="(min-width: 800px) 520px, 100vw" />
+          <Image src={images[i]} alt={`${t.altPrefix} ${name}`} widths={[480, 800]} sizes="(min-width: 800px) 540px, 100vw" />
           <figcaption>{name}</figcaption>
         </figure>
       ))}
@@ -28,8 +26,7 @@ const layouts = [
 </section>
 
 <style>
-  .grid { display: grid; gap: 24px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grid { display: grid; gap: 40px 28px; margin-top: 56px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
   figure { margin: 0; }
-  img { border-radius: 12px; border: 1px solid var(--border); }
-  figcaption { margin-top: 8px; color: var(--muted); font-size: 0.95rem; text-align: center; }
+  figcaption { margin-top: 12px; font: 0.8rem var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
 </style>

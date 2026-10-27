@@ -4,7 +4,7 @@ Landing page for [Shortty](https://github.com/juan-alvarz/Shortty), built with [
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/ShorttyLanding
+npm run dev      # http://localhost:4321
 npm run build    # output in dist/
 ```
 
@@ -12,8 +12,8 @@ npm run build    # output in dist/
 
 - `src/pages/index.astro`: the page, a list of sections.
 - `src/components/`: one file per section (Hero, Features, Gallery, Install, Footer).
-- `src/config.ts`: links, title and description.
+- `src/config.ts`: links.
+- `src/i18n/`: all page copy (`en.ts`). To add a language, copy `en.ts`, translate it, register it in `index.ts` and `astro.config.mjs`.
 - `src/styles/global.css`: shared styles and colors (CSS variables, light and dark).
 - `src/assets/`: screenshots copied from the Shortty repo's `Design/` folder; Astro optimizes them at build time.
-- `astro.config.mjs`: `site` and `base` for GitHub Pages.
-- `.github/workflows/deploy.yml`: deploys to GitHub Pages on push to `main`.
+- `astro.config.mjs`: i18n locales; set `site`/`base` when hosting.

@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 
-// Update `site` and `base` if the page moves to a custom domain
-// (custom domain: remove `base`).
+// Local only for now. When hosting, set `site` (and `base` if it lives under a path, e.g. '/ShorttyLanding').
 export default defineConfig({
-  site: 'https://juan-alvarz.github.io',
-  base: '/ShorttyLanding',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
 });
