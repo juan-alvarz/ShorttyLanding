@@ -17,7 +17,7 @@ sharp corners, no card borders. Each version is a real design direction, not a r
 ## Directions
 
 - [x] 01 cobalt: the approved design. Cobalt/paper/ink bands, Gloock + Plex Mono, viewfinder corners. https://github.com/juan-alvarz/ShorttyLanding/pull/1
-- [ ] 02 paper: light-first. Paper dominates, ink type, cobalt only as accent blocks.
+- [x] 02 paper: light-first. Paper dominates, ink type, cobalt only as accent blocks. https://github.com/juan-alvarz/ShorttyLanding/pull/2
 - [ ] 03 heat: orange-dominant, loud Arc energy, ink type on orange.
 - [ ] 04 terminal: Nous Hermes terminal. All mono (headlines too), ink, ASCII cat hero, prompt-style labels.
 - [ ] 05 editorial: magazine. Big serif, full-bleed screenshots, generous whitespace.
