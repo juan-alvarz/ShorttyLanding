@@ -2,7 +2,7 @@
 import { useTranslations } from '../i18n';
 const t = useTranslations(Astro.currentLocale).capture;
 ---
-<section class="band light" id="capture">
+<section class="band dark" id="capture">
   <div class="wrap grid">
     <div class="intro">
       <span class="label">{t.label}</span>
@@ -21,26 +21,18 @@ const t = useTranslations(Astro.currentLocale).capture;
 </section>
 
 <style>
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 64px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 64px; }
   .intro { position: sticky; top: 32px; align-self: start; }
-  dl { margin: 0; display: grid; gap: 4px; }
-  dl > div {
-    display: grid;
-    grid-template-columns: 13ch minmax(0, 1fr);
-    gap: 24px;
-    padding: 18px 20px;
-    background: var(--light-raised);
-  }
-  dl > div:hover { background: var(--dark); color: var(--white); }
-  dl > div:hover dd { color: var(--on-dark-muted); }
-  dt { font-weight: 600; }
-  dd { margin: 0; color: var(--on-light-muted); }
+  dl { margin: 0; display: grid; gap: 0; }
+  dl > div { display: grid; grid-template-columns: 15ch minmax(0, 1fr); gap: 20px; padding: 10px 14px; }
+  dl > div:hover { background: var(--accent); color: var(--dark); text-shadow: none; }
+  dl > div:hover dt, dl > div:hover dd { color: var(--dark); text-shadow: none; }
+  dt { font: 400 1.5rem/1.1 var(--display); text-transform: uppercase; color: var(--accent); text-shadow: var(--glow); }
+  dd { margin: 0; color: var(--white); }
 
   @media (max-width: 900px) {
     .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .intro { position: static; }
   }
-  @media (max-width: 520px) {
-    dl > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-  }
+  @media (max-width: 560px) { dl > div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 </style>
