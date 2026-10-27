@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import icon from '../assets/icon.png';
+import hero from '../assets/hero.png';
+import { RELEASES } from '../config';
+---
+<header class="hero">
+  <div class="wrap">
+    <Image src={icon} alt="" width={96} height={96} class="icon" />
+    <h1>Screenshots, <br />minus the friction.</h1>
+    <p class="lead">
+      Shortty is a free, minimal screenshot tool for macOS. Capture, mark up and share in seconds.
+      Every feature is free, no ads, no account.
+    </p>
+    <p class="actions">
+      <a class="button" href={RELEASES}>Download for macOS</a>
+      <a class="button secondary" href="#install">How to install</a>
+    </p>
+    <p class="note">Apple silicon, macOS 14 or later. Free and open source (MIT).</p>
+    <Image src={hero} alt="The Shortty editor with blur, arrows, spotlight, Live Text and recent captures" widths={[640, 1080, 1600]} sizes="(min-width: 1080px) 1048px, 100vw" class="shot" loading="eager" />
+  </div>
+</header>
+
+<style>
+  .hero { padding: 64px 0 24px; text-align: center; }
+  .icon { margin: 0 auto 24px; border-radius: 22px; }
+  .lead { margin-left: auto; margin-right: auto; }
+  .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 28px 0 8px; }
+  .note { color: var(--muted); font-size: 0.9rem; }
+  .shot { margin: 40px auto 0; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 24px 60px rgb(0 0 0 / 0.25); }
+</style>

@@ -1,0 +1,14 @@
+---
+import { REPO, LICENSE } from '../config';
+---
+<footer>
+  <div class="wrap">
+    <p>Shortty is free and open source under the <a href={LICENSE}>MIT license</a>.</p>
+    <p><a href={REPO}>Source on GitHub</a> · <a href={`${REPO}/issues`}>Report an issue</a></p>
+  </div>
+</footer>
+
+<style>
+  footer { border-top: 1px solid var(--border); padding: 40px 0; color: var(--muted); text-align: center; font-size: 0.95rem; }
+  footer p { margin: 0 0 0.4em; }
+</style>

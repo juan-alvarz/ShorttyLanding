@@ -1,0 +1,43 @@
+---
+import { RELEASES, REPO } from '../config';
+---
+<section id="install">
+  <div class="wrap">
+    <h2>How to install</h2>
+    <p class="lead">
+      Shortty is free, so it isn't signed with a paid Apple Developer ID. macOS will warn you the first time;
+      it takes one extra click to open. There are two ways in.
+    </p>
+
+    <h3>Option 1: download the app</h3>
+    <ol>
+      <li>Download the latest <code>Shortty-X.Y.Z.dmg</code> from <a href={RELEASES}>GitHub Releases</a>.</li>
+      <li>Open it and drag <strong>Shortty</strong> onto <strong>Applications</strong>.</li>
+      <li>Open Shortty. macOS says it can't verify the developer: close that message (don't move it to the Trash).</li>
+      <li>Open <strong>System Settings → Privacy &amp; Security</strong>, scroll to Security and click
+        <strong>Open Anyway</strong> next to "Shortty was blocked". Confirm with Touch ID or your password. Only needed once.</li>
+      <li>Take a capture. macOS asks for <strong>Screen Recording</strong>: allow Shortty, and reopen it if asked.</li>
+      <li>Set your shortcuts in Settings → Shortcuts. None are set out of the box.</li>
+    </ol>
+    <p>Prefer the terminal for step 4? This removes the "downloaded from the internet" flag instead:</p>
+    <pre><code>xattr -dr com.apple.quarantine /Applications/Shortty.app</code></pre>
+    <p>To update, drag the new version over the old one. Screen Recording stays allowed.</p>
+
+    <h3>Option 2: build it yourself</h3>
+    <p>
+      No Apple account and no warning, because apps you build aren't flagged as downloaded.
+      You need Xcode (free) and <a href="https://github.com/yonaskolb/XcodeGen">xcodegen</a>.
+    </p>
+    <pre><code>brew install xcodegen
+git clone {REPO}.git
+cd Shortty
+Scripts/install.sh</code></pre>
+    <p>To update later: <code>git pull &amp;&amp; Scripts/install.sh</code></p>
+  </div>
+</section>
+
+<style>
+  ol { padding-left: 1.3em; }
+  ol li { margin-bottom: 0.6em; }
+  h3 { margin-top: 2em; }
+</style>

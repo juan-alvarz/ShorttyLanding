@@ -1,0 +1,30 @@
+---
+const features = [
+  ['Every kind of capture', 'Region, window, screen, scrolling pages, delayed shots, or just the text and QR codes in an area, straight to the clipboard.'],
+  ['An editor that never flattens', 'Arrows, text callouts, shapes, numbered steps, magnifier, blur and spotlight. Select anything later to move, resize or recolor it.'],
+  ['Text Card', 'Drag over code, a terminal or a chat and get a clean window-like card, every word in its original color.'],
+  ['Pick up where you left off', 'The last 20 captures keep their edits, even after a relaunch.'],
+  ['Private by design', 'No account, no tracking. Text is recognized on-device with Apple Vision and Live Text; nothing leaves your Mac.'],
+  ['Native and light', 'Swift, SwiftUI and AppKit, no third-party dependencies. Lives in the menu bar.'],
+];
+---
+<section id="features">
+  <div class="wrap">
+    <h2>What you get</h2>
+    <p class="lead">A small app that does the screenshot job well, and gets out of the way.</p>
+    <ul class="grid">
+      {features.map(([title, text]) => (
+        <li>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+  li { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+  li p { color: var(--muted); margin: 0; }
+</style>
