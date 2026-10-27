@@ -1,0 +1,47 @@
+---
+// A band of words that scrolls forever. The list is rendered twice so the loop is seamless;
+// the second copy is hidden from screen readers. With reduced motion it simply wraps.
+interface Props {
+  items: string[];
+  tone?: 'accent' | 'dark' | 'light';
+  reverse?: boolean;
+  big?: boolean;
+}
+const { items, tone = 'accent', reverse = false, big = false } = Astro.props;
+---
+<div class:list={['marquee', tone, { reverse, big }]}>
+  <div class="track">
+    <ul>{items.map((item) => <li>{item}</li>)}</ul>
+    <ul aria-hidden="true">{items.map((item) => <li>{item}</li>)}</ul>
+  </div>
+</div>
+
+<style>
+  .marquee { overflow: hidden; padding-block: 18px; }
+  .marquee.accent { background: var(--accent); color: var(--dark); }
+  .marquee.dark { background: var(--dark); color: var(--white); }
+  .marquee.light { background: var(--light); color: var(--dark); }
+  .track { display: flex; width: max-content; }
+  ul { display: flex; list-style: none; margin: 0; padding: 0; }
+  li {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font: 800 clamp(1.4rem, 3vw, 2.2rem)/1 var(--display);
+    text-transform: uppercase;
+  }
+  .big li { font-size: clamp(3rem, 9vw, 7rem); }
+  li::after { content: '✦'; margin-inline: 0.6em; font-size: 0.6em; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .track { animation: scroll 40s linear infinite; }
+    .reverse .track { animation-direction: reverse; }
+    .marquee:hover .track { animation-play-state: paused; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .track { width: auto; }
+    ul { flex-wrap: wrap; justify-content: center; gap: 8px 0; padding-inline: 16px; }
+    ul[aria-hidden] { display: none; }
+  }
+</style>

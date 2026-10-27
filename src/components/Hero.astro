@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import icon from '../assets/icon.png';
 import hero from '../assets/hero.png';
 import { RELEASES, REPO } from '../config';
+import Marquee from './Marquee.astro';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -43,6 +44,8 @@ const [before, selected, after] = t.hero.headline;
       <p class="hint" aria-hidden="true">+ {t.hero.hint}</p>
     </div>
   </div>
+
+  <Marquee items={t.capture.items.map(([name]) => name)} />
 
   <figure class="shot wrap">
     <div class="viewfinder">
@@ -116,50 +119,36 @@ const [before, selected, after] = t.hero.headline;
 </script>
 
 <style>
-  .hero {
-    position: relative;
-    cursor: crosshair;
-    background: linear-gradient(var(--primary) 0 72%, var(--dark) 72%);
-    color: var(--white);
-  }
+  .hero { position: relative; cursor: crosshair; background: linear-gradient(var(--light) 0 62%, var(--dark) 62%); color: var(--dark); }
   .hero a, .hero nav { cursor: pointer; }
 
-  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; cursor: default; }
-  .brand { display: flex; align-items: center; gap: 10px; font: 600 1.05rem/1 var(--mono); text-decoration: none; }
-  .brand :global(img) { width: 36px; height: 36px; }
-  nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; cursor: default; }
+  .brand { display: flex; align-items: center; gap: 10px; font: 900 1.8rem/1 var(--display); text-transform: uppercase; text-decoration: none; }
+  .brand :global(img) { width: 34px; height: 34px; }
+  nav ul { display: flex; align-items: center; gap: 24px; list-style: none; margin: 0; padding: 0; font: 800 1.25rem/1 var(--display); text-transform: uppercase; }
   nav ul a:not(.button) { text-decoration: none; }
-  nav ul a:not(.button):hover { color: var(--dark); }
-  nav .button { padding: 12px 18px; }
-  nav .button:hover { background: var(--dark); color: var(--white); }
+  nav .button { padding: 10px 16px; font-size: 1.25rem; }
 
-  .intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    align-items: end;
-    gap: 48px;
-    padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 88px);
-  }
-  h1 { font: var(--step-4)/0.92 var(--display); letter-spacing: -0.035em; }
-  h1 > span { display: block; width: fit-content; }
-  h1 .selection { margin-block: 0.08em 0.3em; padding-inline: 0.06em; }
-  h1 .size { font-size: 0.8rem; }
+  .intro { padding-block: clamp(24px, 4vw, 56px) clamp(40px, 5vw, 64px); background: var(--light); }
+  h1 { font: 900 var(--step-4)/0.82 var(--display); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 0.2em 0.18em; }
+  h1 .selection { padding-inline: 0.03em; }
+  h1 .size { font-size: 0.85rem; }
 
-  .side { display: flex; flex-direction: column; gap: 28px; }
-  .side .lead { margin: 0; color: var(--white); }
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-  .hint { color: var(--on-primary-muted); font-size: 0.8rem; letter-spacing: 0.04em; }
+  .side { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px 48px; margin-top: clamp(40px, 5vw, 64px); }
+  .side .lead { margin: 0; color: var(--dark); font-size: var(--step-1); max-width: 46ch; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+  .hint { grid-column: 1 / -1; color: var(--on-light-muted); font-size: 0.8rem; }
 
-  .shot { margin-top: 0; margin-bottom: 0; padding-bottom: clamp(48px, 7vw, 96px); }
-  .shot :global(img) { width: 100%; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.6); }
-  figcaption { margin-top: 14px; color: var(--on-dark-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .shot { margin-top: 0; margin-bottom: 0; padding-block: clamp(40px, 6vw, 72px); }
+  .shot :global(img) { width: 100%; }
+  figcaption { margin-top: 14px; color: var(--on-dark-muted); font: 800 1.2rem var(--display); text-transform: uppercase; }
 
-  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 255 255 / 0.06); }
-  .hero :global(.try) { pointer-events: auto; position: absolute; left: -1px; top: calc(100% + 34px); padding: 6px 10px; background: var(--white); color: var(--dark); font: 600 0.8rem/1 var(--mono); text-decoration: none; white-space: nowrap; }
-  .hero :global(.try:hover) { background: var(--dark); color: var(--white); }
+  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 107 61 / 0.08); }
+  .hero :global(.try) { pointer-events: auto; position: absolute; left: -3px; top: calc(100% + 40px); padding: 6px 10px; background: var(--dark); color: var(--white); font: 800 1.1rem/1 var(--display); text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+  .hero :global(.try:hover) { background: var(--accent); color: var(--dark); }
 
   @media (max-width: 900px) {
-    .intro { grid-template-columns: minmax(0, 1fr); }
+    .side { grid-template-columns: minmax(0, 1fr); }
     .optional { display: none; }
     .hint { display: none; }
   }

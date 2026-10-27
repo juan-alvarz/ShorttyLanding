@@ -1,22 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import Specs from '../components/Specs.astro';
+import Marquee from '../components/Marquee.astro';
 import Capture from '../components/Capture.astro';
 import Edit from '../components/Edit.astro';
 import Extras from '../components/Extras.astro';
 import Layouts from '../components/Layouts.astro';
 import Install from '../components/Install.astro';
 import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 <Base>
   <Hero />
   <main>
-    <Specs />
+    <Marquee items={t.specs} tone="dark" reverse />
     <Capture />
+    <Marquee items={t.edit.tools.map(([, name]) => name)} big />
     <Edit />
     <Extras />
     <Layouts />
+    <Marquee items={t.extras.items.map(([name]) => name)} tone="dark" />
     <Install />
   </main>
   <Footer />

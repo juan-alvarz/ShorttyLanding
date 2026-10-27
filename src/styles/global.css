@@ -1,39 +1,41 @@
 /*
-  Layout: the page is a capture surface. Full-width color bands (primary, light, dark),
-  accent viewfinder corners and selection frames taken from the app icon and the
-  app's own selection UI. Sharp corners, no card borders.
+  Layout (version 11, ticker): kinetic type. Condensed Big Shoulders Display in caps,
+  white pages and black bands, and marquees of capture modes, specs and tools rolling
+  across in Shortty orange (src/components/Marquee.astro). Sharp corners, no card borders.
 */
-@import '@fontsource/gloock/latin-400.css';
+@import '@fontsource/big-shoulders-display/latin-500';
+@import '@fontsource/big-shoulders-display/latin-800';
+@import '@fontsource/big-shoulders-display/latin-900';
 @import '@fontsource/ibm-plex-mono/latin-400.css';
 @import '@fontsource/ibm-plex-mono/latin-500.css';
 @import '@fontsource/ibm-plex-mono/latin-600.css';
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* Color, named by role. Here: primary = cobalt, dark = ink, light = paper, accent = Shortty orange. */
-  --primary: #2b3bf0;
-  --primary-deep: #1f2bc4;
-  --dark: #0b0d1c;
-  --dark-raised: #161a36;
-  --light: #eceef5;
-  --light-raised: #dfe2ee;
+  /* Color, named by role. Here: light = white, dark = near-black, accent = Shortty orange. */
+  --primary: #0d0d0f;
+  --primary-deep: #000000;
+  --dark: #0d0d0f;
+  --dark-raised: #1c1c20;
+  --light: #ffffff;
+  --light-raised: #f1f1f1;
   --accent: #ff6b3d;
   --white: #ffffff;
-  --on-primary-muted: #c6cbff;
-  --on-dark-muted: #8f96c4;
-  --on-light-muted: #525877;
+  --on-primary-muted: #a1a1a8;
+  --on-dark-muted: #a1a1a8;
+  --on-light-muted: #55555c;
 
   /* Type */
-  --display: 'Gloock', 'Iowan Old Style', Georgia, serif;
+  --display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --step-0: 0.95rem;
   --step-1: 1.15rem;
-  --step-2: clamp(1.5rem, 3vw, 2rem);
-  --step-3: clamp(2.4rem, 6vw, 4.2rem);
-  --step-4: clamp(3.6rem, 13vw, 10rem);
+  --step-2: clamp(1.6rem, 3vw, 2.2rem);
+  --step-3: clamp(3rem, 8vw, 6.5rem);
+  --step-4: clamp(4.5rem, 18vw, 16rem);
 
-  --max: 1200px;
+  --max: 1240px;
 }
 
 * { box-sizing: border-box; }
@@ -42,30 +44,29 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--dark);
-  color: var(--white);
+  background: var(--light);
+  color: var(--dark);
   font: 400 var(--step-0)/1.65 var(--mono);
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 a:hover { color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
-h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
-h2 { font: var(--step-3)/1 var(--display); letter-spacing: -0.02em; }
-h3 { font: 600 var(--step-0)/1.3 var(--mono); }
+h1, h2, h3 { margin: 0; font-weight: 900; text-wrap: balance; }
+h2 { font: 900 var(--step-3)/0.88 var(--display); text-transform: uppercase; letter-spacing: -0.01em; }
+h3 { font: 800 var(--step-2)/1 var(--display); text-transform: uppercase; }
 p { margin: 0; }
 strong { font-weight: 600; }
 
 code, pre { font-family: var(--mono); }
 
-/* A full-width color band with a centered inner column. */
-.band { padding-block: clamp(72px, 10vw, 140px); }
-.band.primary { background: var(--primary); color: var(--white); }
+.band { padding-block: clamp(72px, 10vw, 128px); }
 .band.light { background: var(--light); color: var(--dark); }
-.band.dark { background: var(--dark); color: var(--white); }
+.band.raised { background: var(--light-raised); color: var(--dark); }
+.band.primary, .band.dark { background: var(--dark); color: var(--white); }
 
 .wrap {
   max-width: var(--max);
@@ -74,42 +75,42 @@ code, pre { font-family: var(--mono); }
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 
-/* Section eyebrow: an accent selection handle and a lowercase mono word. */
+/* Section eyebrow: an orange tag. */
 .label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-  font: 500 0.78rem/1 var(--mono);
-  letter-spacing: 0.16em;
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 6px 10px;
+  font: 600 0.75rem/1 var(--mono);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  background: var(--accent);
+  color: var(--dark);
 }
-.label::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
 
-.lead { font-size: var(--step-1); max-width: 52ch; margin-top: 24px; }
-.light .lead { color: var(--on-light-muted); }
-.dark .lead { color: var(--on-dark-muted); }
-.primary .lead { color: var(--on-primary-muted); }
+.lead { font-size: var(--step-1); max-width: 52ch; margin-top: 22px; }
+.light .lead, .raised .lead { color: var(--on-light-muted); }
+.dark .lead, .primary .lead { color: var(--on-dark-muted); }
 
 .button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 24px;
-  font: 600 var(--step-0)/1 var(--mono);
+  padding: 14px 26px;
+  font: 800 1.5rem/1 var(--display);
+  text-transform: uppercase;
   text-decoration: none;
   background: var(--accent);
   color: var(--dark);
 }
-.button:hover { background: var(--white); color: var(--dark); }
+.button:hover { background: var(--dark); color: var(--white); }
 .button.ghost { background: transparent; color: inherit; padding-inline: 4px; text-decoration: underline; }
-.button.ghost:hover { color: var(--accent); }
+.button.ghost:hover { color: var(--accent); background: transparent; }
 
-/* Accent viewfinder corners around whatever it wraps, like the app icon. */
+/* Orange viewfinder corners around whatever it wraps, like the app icon. */
 .viewfinder {
   --c: var(--accent);
-  --len: clamp(18px, 3vw, 36px);
-  --w: 3px;
+  --len: clamp(18px, 3vw, 40px);
+  --w: 5px;
   padding: clamp(10px, 1.6vw, 18px);
   background:
     linear-gradient(var(--c) 0 0) top left / var(--len) var(--w),
@@ -126,27 +127,27 @@ code, pre { font-family: var(--mono); }
 /* A selection rectangle with square handles and a size tag, like Shortty's own. */
 .selection {
   position: relative;
-  outline: 1px solid var(--accent);
+  outline: 3px solid var(--accent);
 }
 .selection > .handle {
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 12px;
   background: var(--white);
-  outline: 1px solid var(--accent);
+  outline: 3px solid var(--accent);
 }
-.selection > .handle:nth-of-type(1) { top: -5px; left: -5px; }
-.selection > .handle:nth-of-type(2) { top: -5px; right: -5px; }
-.selection > .handle:nth-of-type(3) { bottom: -5px; left: -5px; }
-.selection > .handle:nth-of-type(4) { bottom: -5px; right: -5px; }
+.selection > .handle:nth-of-type(1) { top: -7px; left: -7px; }
+.selection > .handle:nth-of-type(2) { top: -7px; right: -7px; }
+.selection > .handle:nth-of-type(3) { bottom: -7px; left: -7px; }
+.selection > .handle:nth-of-type(4) { bottom: -7px; right: -7px; }
 .selection > .size {
   position: absolute;
-  left: -1px;
-  top: calc(100% + 8px);
-  padding: 4px 8px;
+  left: -3px;
+  top: calc(100% + 12px);
+  padding: 5px 9px;
   white-space: nowrap;
-  font: 500 0.75rem/1 var(--mono);
-  letter-spacing: 0.04em;
+  font: 600 0.8rem/1 var(--mono);
+  letter-spacing: 0;
   background: var(--accent);
   color: var(--dark);
 }
