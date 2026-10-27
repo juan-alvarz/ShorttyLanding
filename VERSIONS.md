@@ -1,5 +1,8 @@
 # Landing page versions
 
+Status: all 20 versions are done, each with its own PR into `main` (PRs 1 to 20). Every version also has a phone fix so
+the headline size tag never overlaps the next line. Remaining scheduled work is QA only (see below).
+
 Goal: 20 distinct versions, each on its own branch `versions/NN-name`, each with its own pull request into `main`
 and screenshots in `screenshots/`. All versions keep the same content (src/i18n/en.ts), Astro + pnpm, no analytics,
 sharp corners, no card borders. Each version is a real design direction, not a recolor.
@@ -42,3 +45,10 @@ Gotchas:
 - [x] 18 story: sticky scroll storytelling, one feature per screen. https://github.com/juan-alvarz/ShorttyLanding/pull/18
 - [x] 19 mesh: Arc-like gradient mesh backgrounds, frosted square panels. https://github.com/juan-alvarz/ShorttyLanding/pull/19
 - [x] 20 sunset: orange to pink to violet gradient bands, white type. https://github.com/juan-alvarz/ShorttyLanding/pull/20
+
+## QA pass (scheduled check-ins)
+
+For each version branch: look at screenshots/hero.jpg, full.jpg and mobile.jpg, and check desktop 1440 and phone 390
+for overlaps, clipped text, low-contrast text, horizontal scroll, broken images or fonts. Fix only real defects, keep the
+version's direction, re-run `NODE_PATH=$(npm root -g) pnpm screenshot`, commit "Fix: ..." on that branch, push.
+Log what was checked and fixed here.
