@@ -1,5 +1,6 @@
 /* Dark, flat, sharp. No borders, no rounded corners: color blocks and one hard accent. */
 :root {
+  color-scheme: dark;
   --bg: #0e0d10;
   --bg-alt: #17151b;
   --panel: #1f1c25;

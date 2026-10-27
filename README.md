@@ -1,11 +1,11 @@
 # Shortty landing page
 
-Landing page for [Shortty](https://github.com/juan-alvarz/Shortty), built with [Astro](https://astro.build). No client-side framework.
+Landing page for [Shortty](https://github.com/juan-alvarz/Shortty), built with [Astro](https://astro.build). No client-side framework. Uses [pnpm](https://pnpm.io) (run `corepack enable` once to get it).
 
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # output in dist/
+pnpm install
+pnpm dev       # http://localhost:4321
+pnpm build     # output in dist/
 ```
 
 ## Where things are
