@@ -24,7 +24,7 @@ sharp corners, no card borders. Each version is a real design direction, not a r
 - [x] 05 editorial: magazine. Big serif, full-bleed screenshots, generous whitespace. https://github.com/juan-alvarz/ShorttyLanding/pull/5
 - [x] 06 split: 50/50 split-screen hero, sticky screenshot beside scrolling content. https://github.com/juan-alvarz/ShorttyLanding/pull/6
 - [x] 07 neon: the icon's neon glow. Ink with glowing orange strokes and text. https://github.com/juan-alvarz/ShorttyLanding/pull/7
-- [ ] 08 pastel: Arc pastel bands (lilac, mint, peach), friendly display face.
+- [x] 08 pastel: Arc pastel bands (lilac, mint, peach), friendly display face. https://github.com/juan-alvarz/ShorttyLanding/pull/8
 - [ ] 09 swiss: grotesk, red/black/white, huge type, strict grid.
 - [ ] 10 dither: Nous-style dithered imagery generated at build time.
 - [ ] 11 ticker: kinetic type, marquees of capture modes and tools.
