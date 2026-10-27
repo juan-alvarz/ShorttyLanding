@@ -26,7 +26,7 @@ sharp corners, no card borders. Each version is a real design direction, not a r
 - [x] 07 neon: the icon's neon glow. Ink with glowing orange strokes and text. https://github.com/juan-alvarz/ShorttyLanding/pull/7
 - [x] 08 pastel: Arc pastel bands (lilac, mint, peach), friendly display face. https://github.com/juan-alvarz/ShorttyLanding/pull/8
 - [x] 09 swiss: grotesk, red/black/white, huge type, strict grid. https://github.com/juan-alvarz/ShorttyLanding/pull/9
-- [ ] 10 dither: Nous-style dithered imagery generated at build time.
+- [x] 10 dither: Nous-style dithered imagery generated at build time. https://github.com/juan-alvarz/ShorttyLanding/pull/10
 - [ ] 11 ticker: kinetic type, marquees of capture modes and tools.
 - [ ] 12 teal: deep teal with hot pink accents.
 - [ ] 13 crt: scanlines, phosphor glow, pixel-terminal headings.
