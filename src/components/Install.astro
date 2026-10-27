@@ -53,35 +53,34 @@ const update = 'git pull && Scripts/install.sh';
 </script>
 
 <style>
-  .grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 64px; margin-top: 72px; }
-  h3 { font: var(--step-2)/1.1 var(--display); margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 64px; margin-top: 64px; }
+  h3 { font: 700 var(--step-2)/1.2 var(--display); letter-spacing: -0.04em; margin-bottom: 24px; }
 
-  ol { list-style: none; counter-reset: step; margin: 0 0 32px; padding: 0; display: grid; gap: 4px; }
+  ol { list-style: none; counter-reset: step; margin: 0 0 32px; padding: 0; display: grid; gap: 2px; }
   li {
     counter-increment: step;
     display: grid;
     grid-template-columns: 2.2em minmax(0, 1fr);
     gap: 12px;
-    padding: 14px 18px;
-    background: var(--dark-raised);
+    padding: 8px 0;
     color: var(--on-dark-muted);
   }
   li::before { content: counter(step, decimal-leading-zero); color: var(--accent); font-weight: 600; }
-  li :global(strong), li :global(a) { color: var(--white); }
+  li :global(strong) { color: var(--white); }
   li :global(code), .note :global(code) { color: var(--white); }
 
   .note { color: var(--on-dark-muted); margin-bottom: 14px; }
-  .note :global(a) { color: var(--white); }
 
-  .code { position: relative; margin-bottom: 28px; background: var(--light); color: var(--dark); }
+  .code { position: relative; margin-bottom: 28px; background: var(--dark-raised); color: var(--white); }
   pre { margin: 0; padding: 18px 20px; padding-right: 88px; overflow-x: auto; font-size: 0.88rem; line-height: 1.7; }
+  pre code::before { content: '$ '; color: var(--accent); }
   button {
     position: absolute;
     top: 10px;
     right: 10px;
     padding: 6px 10px;
     border: 0;
-    background: var(--dark);
+    background: var(--light-raised);
     color: var(--white);
     font: 500 0.75rem/1 var(--mono);
     cursor: pointer;
