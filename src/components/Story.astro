@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.png';
+import classic from '../assets/layout-classic.png';
+import twoRows from '../assets/layout-two-rows.png';
+import sidebars from '../assets/layout-sidebars.png';
+import canvasFirst from '../assets/layout-canvas-first.png';
+import { useTranslations } from '../i18n';
+
+// One feature per screen: each chapter is at least a viewport tall, and its screenshot
+// stays pinned beside the text while you scroll through it. No JavaScript.
+const t = useTranslations(Astro.currentLocale);
+const layoutImages = [classic, twoRows, sidebars, canvasFirst];
+---
+<section class="story">
+  <article class="chapter" id="capture">
+    <div class="text">
+      <span class="label">{t.capture.label}</span>
+      <h2>{t.capture.title}</h2>
+      <p class="lead">{t.capture.lead}</p>
+      <dl>
+        {t.capture.items.map(([name, text]) => (
+          <div><dt>{name}</dt><dd>{text}</dd></div>
+        ))}
+      </dl>
+    </div>
+    <figure class="media viewfinder">
+      <Image src={hero} alt={t.hero.shotAlt} widths={[640, 1080]} sizes="(min-width: 960px) 55vw, 100vw" />
+    </figure>
+  </article>
+
+  <article class="chapter flip" id="edit">
+    <div class="text">
+      <span class="label">{t.edit.label}</span>
+      <h2>{t.edit.title}</h2>
+      <p class="lead">{t.edit.lead}</p>
+      <ul class="tools">
+        {t.edit.tools.map(([keys, name, text]) => (
+          <li><span class="keys">{keys.split(' ').map((key) => <kbd>{key}</kbd>)}</span> <strong>{name}</strong> <span>{text}</span></li>
+        ))}
+      </ul>
+    </div>
+    <figure class="media viewfinder">
+      <Image src={classic} alt={t.layouts.items[0].join(': ')} widths={[640, 1080]} sizes="(min-width: 960px) 55vw, 100vw" />
+    </figure>
+  </article>
+
+  {t.layouts.items.map(([name, text], i) => (
+    <article class:list={['chapter', { flip: i % 2 === 1 }]} id={i === 0 ? 'layouts' : undefined}>
+      <div class="text">
+        <span class="label">{t.layouts.label} · {i + 1}/{t.layouts.items.length}</span>
+        {i === 0 && <h2>{t.layouts.title}</h2>}
+        {i === 0 && <p class="lead">{t.layouts.lead}</p>}
+        <h3>{name}</h3>
+        <p>{text}</p>
+      </div>
+      <figure class="media viewfinder">
+        <Image src={layoutImages[i]} alt={`${name}: ${text}`} widths={[640, 1080]} sizes="(min-width: 960px) 55vw, 100vw" />
+      </figure>
+    </article>
+  ))}
+</section>
+
+<style>
+  .story { background: var(--dark); color: var(--white); }
+  .chapter {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(32px, 5vw, 80px);
+    min-height: 100vh;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 18vh max(20px, env(safe-area-inset-right, 0px)) 18vh max(20px, env(safe-area-inset-left, 0px));
+  }
+  .chapter.flip { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+  .chapter.flip .text { order: 2; }
+  .media { position: sticky; top: 14vh; align-self: start; margin: 0; }
+  .media :global(img) { width: 100%; }
+
+  .text { align-self: start; }
+  h3 { font: 400 var(--step-3)/1 var(--display); font-style: italic; margin: 8px 0 18px; }
+  .text > p:not(.lead) { font-size: var(--step-1); color: var(--on-dark-muted); max-width: 40ch; }
+  .text .lead + h3 { margin-top: 64px; }
+
+  dl { margin: 48px 0 0; display: grid; gap: 18px; }
+  dt { font: 400 1.5rem/1.1 var(--display); }
+  dd { margin: 4px 0 0; color: var(--on-dark-muted); }
+
+  .tools { list-style: none; margin: 48px 0 0; padding: 0; display: grid; gap: 14px; }
+  .tools li { display: grid; grid-template-columns: 5.4rem 9rem minmax(0, 1fr); gap: 12px; align-items: baseline; }
+  .tools span:last-child { color: var(--on-dark-muted); font-size: 0.92rem; }
+  .keys { display: flex; gap: 4px; }
+  kbd { display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding-inline: 6px; background: var(--white); color: var(--dark); font: 500 0.85rem/1 var(--mono); }
+
+  @media (max-width: 960px) {
+    .chapter, .chapter.flip { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-block: 80px; }
+    .chapter.flip .text { order: 0; }
+    .media { position: static; }
+    .tools li { grid-template-columns: 5rem minmax(0, 1fr); }
+    .tools span:last-child { grid-column: 2; }
+  }
+</style>
