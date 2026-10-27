@@ -116,47 +116,59 @@ const [before, selected, after] = t.hero.headline;
 </script>
 
 <style>
-  .hero {
-    position: relative;
-    cursor: crosshair;
-    background: linear-gradient(var(--primary) 0 72%, var(--dark) 72%);
-    color: var(--white);
+  .hero { position: relative; cursor: crosshair; color: var(--white); overflow: hidden; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -20% -10% auto;
+    height: 90%;
+    background: radial-gradient(40% 50% at 70% 40%, rgb(255 79 139 / 0.18), transparent 70%),
+                radial-gradient(35% 45% at 25% 30%, rgb(255 122 69 / 0.2), transparent 70%);
+    pointer-events: none;
   }
   .hero a, .hero nav { cursor: pointer; }
 
-  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; cursor: default; }
-  .brand { display: flex; align-items: center; gap: 10px; font: 600 1.05rem/1 var(--mono); text-decoration: none; }
-  .brand :global(img) { width: 36px; height: 36px; }
-  nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
-  nav ul a:not(.button) { text-decoration: none; }
-  nav ul a:not(.button):hover { color: var(--dark); }
+  nav { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; cursor: default; }
+  .brand { display: flex; align-items: center; gap: 12px; font: 400 1.5rem/1 var(--display); text-decoration: none; text-shadow: var(--neon); }
+  .brand :global(img) { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgb(255 122 69 / 0.6)); }
+  nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; font-weight: 600; }
+  nav ul a:not(.button) { text-decoration: none; color: var(--on-dark-muted); }
   nav .button { padding: 12px 18px; }
-  nav .button:hover { background: var(--dark); color: var(--white); }
 
   .intro {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     align-items: end;
     gap: 48px;
     padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 88px);
   }
-  h1 { font: var(--step-4)/0.92 var(--display); letter-spacing: -0.035em; }
+  h1 { font: 400 var(--step-4)/0.95 var(--display); color: #fff1ea; text-shadow: var(--neon); }
   h1 > span { display: block; width: fit-content; }
-  h1 .selection { margin-block: 0.08em 0.3em; padding-inline: 0.06em; }
+  h1 .selection { margin-block: 0.1em 0.3em; padding-inline: 0.06em; }
   h1 .size { font-size: 0.8rem; }
 
   .side { display: flex; flex-direction: column; gap: 28px; }
-  .side .lead { margin: 0; color: var(--white); }
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-  .hint { color: var(--on-primary-muted); font-size: 0.8rem; letter-spacing: 0.04em; }
+  .side .lead { margin: 0; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+  .hint { color: var(--on-dark-muted); font: 0.78rem var(--mono); letter-spacing: 0.04em; }
 
-  .shot { margin-top: 0; margin-bottom: 0; padding-bottom: clamp(48px, 7vw, 96px); }
-  .shot :global(img) { width: 100%; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.6); }
-  figcaption { margin-top: 14px; color: var(--on-dark-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .shot { position: relative; margin-top: 0; margin-bottom: 0; padding-bottom: clamp(56px, 8vw, 104px); }
+  .shot :global(img) { width: 100%; box-shadow: 0 30px 120px -20px rgb(255 122 69 / 0.35); }
+  figcaption { margin-top: 16px; color: var(--on-dark-muted); font: 0.75rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
 
-  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 255 255 / 0.06); }
-  .hero :global(.try) { pointer-events: auto; position: absolute; left: -1px; top: calc(100% + 34px); padding: 6px 10px; background: var(--white); color: var(--dark); font: 600 0.8rem/1 var(--mono); text-decoration: none; white-space: nowrap; }
-  .hero :global(.try:hover) { background: var(--dark); color: var(--white); }
+  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 122 69 / 0.06); }
+  .hero :global(.try) { pointer-events: auto; position: absolute; left: -2px; top: calc(100% + 36px); padding: 6px 10px; background: var(--white); color: #1a0b05; font: 600 0.8rem/1 var(--mono); text-decoration: none; white-space: nowrap; }
+  .hero :global(.try:hover) { background: var(--glow); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    h1 { animation: flicker 3.4s 0.4s 1 both; }
+    @keyframes flicker {
+      0%, 4%, 8%, 12% { opacity: 1; }
+      2%, 6% { opacity: 0.35; }
+      10% { opacity: 0.7; }
+    }
+  }
 
   @media (max-width: 900px) {
     .intro { grid-template-columns: minmax(0, 1fr); }

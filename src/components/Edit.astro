@@ -2,7 +2,7 @@
 import { useTranslations } from '../i18n';
 const t = useTranslations(Astro.currentLocale).edit;
 ---
-<section class="band dark" id="edit">
+<section class="band raised" id="edit">
   <div class="wrap">
     <span class="label">{t.label}</span>
     <h2>{t.title}</h2>
@@ -29,7 +29,7 @@ const t = useTranslations(Astro.currentLocale).edit;
     column-gap: 18px;
     row-gap: 4px;
     padding: 20px;
-    background: var(--dark-raised);
+    background: rgb(255 255 255 / 0.03);
   }
   .keys { grid-row: span 2; display: flex; gap: 4px; }
   kbd {
@@ -37,11 +37,12 @@ const t = useTranslations(Astro.currentLocale).edit;
     place-items: center;
     width: 44px;
     height: 44px;
-    background: var(--light);
-    color: var(--dark);
-    font: 600 1.05rem/1 var(--mono);
-    box-shadow: inset 0 -4px 0 var(--light-raised);
+    background: #0b0b0e;
+    color: var(--accent);
+    font: 500 1.1rem/1 var(--mono);
+    text-shadow: var(--neon);
+    box-shadow: inset 0 0 0 1px rgb(255 122 69 / 0.25), 0 0 16px rgb(255 122 69 / 0.15);
   }
-  li:hover kbd { background: var(--accent); box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.18); }
-  p { color: var(--on-dark-muted); font-size: 0.85rem; }
+  li:hover kbd { color: var(--white); box-shadow: inset 0 0 0 1px var(--accent), 0 0 22px rgb(255 122 69 / 0.5); }
+  p { color: var(--on-dark-muted); font-size: 0.9rem; }
 </style>
