@@ -58,3 +58,19 @@ Log what was checked and fixed here.
 Five styled install windows for the release `.dmg`, each a PR into `main` of juan-alvarz/Shortty, sharing
 `Scripts/make-dmg.sh`: https://github.com/juan-alvarz/Shortty/pull/2 (cobalt), /pull/3 (neon), /pull/4 (minimal),
 /pull/5 (pastel), /pull/6 (blueprint). Not run on macOS yet; needs one real `Scripts/make-dmg.sh` run to confirm.
+
+## QA log
+
+### Check-in 1 (2026-10-27, ~10:00 UTC): versions 01–10
+
+Checked each branch at 1440 and 390 wide: horizontal overflow, broken images, failed fonts, elements past the page
+edge and text contrast (automated, Playwright), plus a visual pass over every phone screenshot.
+
+- No overflow, broken images or font failures on any of 01–10.
+- Fixed on all 20 versions: on phones, long install commands ran underneath the Copy button and were clipped
+  (`xattr …`, the `git clone` URL). Code blocks now wrap.
+- 04 terminal: the `--layout=` prefix on the layout tabs was nearly invisible; now a readable dim grey.
+- 08 pastel, 10 dither: the headline size tag was white on orange (about 2.8:1); now dark text on orange.
+- 09 swiss: unselected layout tabs were light grey on white (1.7:1); now mid grey (3.4:1, large bold text).
+
+Left for check-in 2: the same checks for 11–20 (their install fix is already in).
