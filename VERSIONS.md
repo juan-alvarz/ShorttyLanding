@@ -7,7 +7,8 @@ sharp corners, no card borders. Each version is a real design direction, not a r
 ## How to make a version
 
 1. `git fetch origin versions/01-cobalt && git checkout -B versions/NN-name origin/versions/01-cobalt`
-2. Change tokens, fonts and components for the direction below. Keep copy in `src/i18n/en.ts`.
+2. Change tokens (named by role: --primary, --light, --dark, --accent), fonts and components for the direction
+   below. Keep copy in `src/i18n/en.ts`.
 3. `NODE_PATH=$(npm root -g) pnpm screenshot` (look at the screenshots and fix anything broken before committing)
 4. Commit "Version NN: Name", `git push -u origin versions/NN-name`
 5. Open a PR into `main` titled "Version NN: Name", with the direction and the three screenshots
