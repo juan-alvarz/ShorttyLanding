@@ -39,7 +39,10 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* --nav-h is the sticky nav's height, kept up to date by src/scripts/scroll.ts. */
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h, 76px); }
+/* Lenis does the easing when it runs; the browser's own would fight it. */
+html.lenis.lenis-smooth { scroll-behavior: auto; }
 
 body {
   margin: 0;
@@ -151,6 +154,9 @@ code, pre { font-family: var(--mono); }
   background: var(--accent);
   color: var(--dark);
 }
+
+/* A section reached from the nav is focused for keyboard users, but needs no outline. */
+section[tabindex='-1']:focus, header[tabindex='-1']:focus { outline: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

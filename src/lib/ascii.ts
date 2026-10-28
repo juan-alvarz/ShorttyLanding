@@ -23,5 +23,16 @@ export async function toAscii(path: string, columns: number, rows: number): Prom
     }
     lines.push(line.trimEnd());
   }
-  return lines.join('\n');
+  return trim(lines).join('\n');
+}
+
+// Drops the blank rows and columns around the drawing (the icon's dark body), so the art's box is
+// the drawing itself and lines up with whatever sits next to it.
+function trim(lines: string[]): string[] {
+  const first = lines.findIndex((line) => line !== '');
+  const last = lines.findLastIndex((line) => line !== '');
+  if (first === -1) return [];
+  const rows = lines.slice(first, last + 1);
+  const indent = Math.min(...rows.filter((line) => line !== '').map((line) => line.search(/\S/)));
+  return rows.map((line) => line.slice(indent));
 }
