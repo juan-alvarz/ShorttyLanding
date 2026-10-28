@@ -135,9 +135,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .where:not(:empty)::before { content: '/ '; }
   nav ul { display: flex; align-items: center; gap: 26px; list-style: none; margin: 0; padding: 0; font-weight: 600; font-size: 0.95rem; }
   nav ul a:not(.button) { text-decoration: none; }
-  /* The section on screen: a small, whole sun under the word, with a soft glow. */
+  /* The section on screen: a small sun under the word, a disc with eight rays and a soft glow. */
   nav ul a[aria-current] { position: relative; }
-  nav ul a[aria-current]::after { content: ''; position: absolute; left: calc(50% - 3px); top: calc(100% + 6px); width: 6px; height: 6px; border-radius: 50%; background: #ffe28c; box-shadow: 0 0 8px 2px rgb(255 226 140 / 0.6); }
+  nav ul a[aria-current]::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - 8px);
+    top: calc(100% + 2px);
+    width: 16px;
+    height: 16px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffe28c' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='3' fill='%23ffe28c' stroke='none'/%3E%3Cpath d='M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1'/%3E%3C/svg%3E") center / contain no-repeat;
+    filter: drop-shadow(0 0 4px rgb(255 226 140 / 0.7));
+  }
   nav .button { padding: 11px 16px; }
 
   .intro { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: clamp(72px, 11vw, 150px) clamp(48px, 6vw, 80px); }
