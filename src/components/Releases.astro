@@ -14,7 +14,7 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
     <p class="lead">{t.releases.lead}</p>
 
     <!-- One open at a time (details with a shared name); the latest starts open. -->
-    <div class="list">
+    <div class="list" data-accordion>
       {releases.map((release, i) => (
         <details name="release" open={i === 0}>
           <summary>
@@ -38,6 +38,10 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
   </div>
 </section>
 
+<script>
+  import '../scripts/accordion';
+</script>
+
 <style>
   .list { display: grid; gap: 4px; margin-top: 64px; }
   details { background: var(--light-raised); }
@@ -52,7 +56,7 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
   }
   summary::-webkit-details-marker { display: none; }
   summary::after { content: '+'; margin-left: auto; font-weight: 600; }
-  details[open] summary::after { content: '−'; }
+  details[open]:not([data-closing]) summary::after { content: '−'; }
   summary:hover .version { color: var(--accent); }
   summary:focus-visible { outline: 2px solid var(--dark); outline-offset: 2px; }
   .version { font: 600 var(--step-2)/1.1 var(--display); }
