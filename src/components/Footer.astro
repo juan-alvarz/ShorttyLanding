@@ -47,6 +47,7 @@ const cat = await toAscii('public/icon.svg', 64, 30);
     .grid { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 48px; text-align: center; }
     .text { justify-items: center; }
     ul { justify-content: center; }
-    .support { text-align: left; }
+    .support { flex-direction: column; gap: 10px; }
+    .support span { max-width: 30ch; }
   }
 </style>
