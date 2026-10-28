@@ -1,0 +1,44 @@
+---
+// The footer's coffee cup, cat style: an orange mug with the icon's ears and a sleepy face.
+// On hover it wakes up: the ears twitch, the eyes open and the steam rises.
+---
+<svg class="cup" viewBox="0 0 72 72" aria-hidden="true">
+  <g class="steam">
+    <path d="M30 14c-3-3 3-5 0-9" />
+    <path d="M42 14c-3-3 3-5 0-9" />
+  </g>
+  <path class="ear left" d="M15 26l3-11 10 11z" />
+  <path class="ear right" d="M57 26l-3-11-10 11z" />
+  <path class="mug" d="M13 26h46v24c0 8-6 14-14 14H27c-8 0-14-6-14-14zM59 31h4c4 0 6 3 6 7s-2 8-6 8h-4v-5h3c1.5 0 2-1.5 2-3s-.5-2-2-2h-3z" />
+  <g class="face">
+    <path class="sleepy" d="M25 41q3 3 6 0M41 41q3 3 6 0" />
+    <circle class="awake" cx="28" cy="40" r="2.6" />
+    <circle class="awake" cx="44" cy="40" r="2.6" />
+    <path d="M33 47l3 2 3-2" />
+  </g>
+</svg>
+
+<style>
+  .cup { width: 64px; height: 64px; flex: none; overflow: visible; }
+  .mug, .ear { fill: var(--accent); }
+  .face path { fill: none; stroke: var(--dark); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .awake { fill: var(--dark); opacity: 0; }
+  .steam path { fill: none; stroke: var(--on-dark-muted); stroke-width: 2.6; stroke-linecap: round; opacity: 0; }
+  .ear { transform-box: fill-box; transform-origin: bottom center; }
+
+  :global(a:hover) > .cup .sleepy, :global(a:focus-visible) > .cup .sleepy { opacity: 0; }
+  :global(a:hover) > .cup .awake, :global(a:focus-visible) > .cup .awake { opacity: 1; }
+  :global(a:hover) > .cup .steam path, :global(a:focus-visible) > .cup .steam path { opacity: 0.8; }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(a:hover) > .cup .ear, :global(a:focus-visible) > .cup .ear { animation: twitch 0.5s ease-in-out 2; }
+    :global(a:hover) > .cup .right { animation-delay: 0.12s !important; }
+    :global(a:hover) > .cup .steam path, :global(a:focus-visible) > .cup .steam path { animation: rise 1.3s ease-in infinite; }
+    .steam path:nth-child(2) { animation-delay: 0.4s !important; }
+  }
+  @keyframes twitch { 50% { transform: rotate(-12deg); } }
+  @keyframes rise {
+    from { transform: translateY(4px); opacity: 0; }
+    40% { opacity: 0.8; }
+    to { transform: translateY(-5px); opacity: 0; }
+  }
+</style>
