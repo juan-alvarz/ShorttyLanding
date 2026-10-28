@@ -18,7 +18,12 @@ if (navbar) new ResizeObserver(setNavHeight).observe(navbar);
 
 // Eased wheel scrolling and in-page links. Skipped for people who ask for less motion:
 // the browser then jumps, still leaving room for the nav through scroll-padding-top.
-const lenis = matchMedia('(prefers-reduced-motion: reduce)').matches ? null : new Lenis({ autoRaf: true });
+// SMOOTHNESS is how much of the remaining distance each frame covers: 1 is the browser's own scrolling,
+// lower glides longer. Lenis's default (0.1) felt floaty; 0.2 keeps a light ease without the drift.
+const SMOOTHNESS = 0.2;
+const lenis = matchMedia('(prefers-reduced-motion: reduce)').matches
+  ? null
+  : new Lenis({ autoRaf: true, lerp: SMOOTHNESS });
 
 document.addEventListener('click', (e) => {
   const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
