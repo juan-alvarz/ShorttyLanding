@@ -1,71 +1,161 @@
-/* Dark, flat, sharp. No borders, no rounded corners: color blocks and one hard accent. */
+/*
+  Layout (version 20, sunset): one continuous sunset runs down the page, from Shortty
+  orange through pink and magenta to violet and night indigo, so each section sits a
+  little later in the evening. White Sora type, translucent white tiles, white
+  selection frames. Sharp corners, no card borders.
+*/
+@import '@fontsource/sora/latin-400';
+@import '@fontsource/sora/latin-600';
+@import '@fontsource/sora/latin-800';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+
 :root {
-  --bg: #0e0d10;
-  --bg-alt: #17151b;
-  --panel: #1f1c25;
-  --text: #f6f3ee;
-  --muted: #a39fae;
-  --accent: #ff6b3d;
-  --accent-2: #ff3d81;
-  --accent-text: #170a05;
-  --max: 1120px;
-  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  color-scheme: dark;
+
+  /* Color, named by role. The sky runs from --dawn to --night down the page; accent = white. */
+  --dawn: #f8682e;
+  --rose: #ff4f7b;
+  --magenta: #c43aa8;
+  --violet: #6b2fd1;
+  --night: #1b1046;
+  --primary: var(--rose);
+  --dark: var(--night);
+  --dark-raised: #2a1a66;
+  --light: #ffffff;
+  --accent: #ffffff;
+  --white: #ffffff;
+  --tile: rgb(27 16 70 / 0.24);
+  --tile-strong: rgb(27 16 70 / 0.36);
+  --on-dark-muted: rgb(255 255 255 / 0.9);
+  --on-light-muted: rgb(255 255 255 / 0.9);
+
+  /* Type */
+  --display: 'Sora', 'Avenir Next', 'Helvetica Neue', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --step-0: 1rem;
+  --step-1: 1.18rem;
+  --step-2: clamp(1.35rem, 2.6vw, 1.8rem);
+  --step-3: clamp(2.3rem, 5.4vw, 4rem);
+  --step-4: clamp(3.4rem, 10vw, 8.2rem);
+
+  --max: 1200px;
 }
 
-* { box-sizing: border-box; border-radius: 0; }
+* { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* --nav-h is the sticky nav's height, kept up to date by src/scripts/scroll.ts. */
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h, 76px); }
+/* Lenis does the easing when it runs; the browser's own would fight it. */
+html.lenis.lenis-smooth { scroll-behavior: auto; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 18px/1.6 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: linear-gradient(var(--dawn) 0%, var(--rose) 22%, var(--magenta) 44%, var(--violet) 68%, var(--night) 92%) var(--night);
+  color: var(--white);
+  font: 400 var(--step-0)/1.65 var(--display);
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--accent); text-underline-offset: 3px; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+a:hover { text-decoration-thickness: 3px; }
+:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 
-h1, h2, h3 { line-height: 1.05; margin: 0 0 0.5em; letter-spacing: -0.035em; font-weight: 800; }
-h1 { font-size: clamp(2.8rem, 8vw, 6rem); }
-h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
-h3 { font-size: 1.2rem; letter-spacing: -0.015em; }
-p { margin: 0 0 1em; }
+h1, h2, h3 { margin: 0; font-weight: 800; text-wrap: balance; }
+h2 { font: 800 var(--step-3)/1 var(--display); letter-spacing: -0.045em; }
+h3 { font: 600 var(--step-0)/1.3 var(--display); }
+p { margin: 0; }
+strong { font-weight: 600; }
 
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-section { padding: 96px 0; }
-section.alt { background: var(--bg-alt); }
-.lead { color: var(--muted); font-size: 1.2rem; max-width: 56ch; }
+code, pre { font-family: var(--mono); }
 
+/* Bands are see-through: the sunset behind them is the color. */
+.band { padding-block: clamp(80px, 11vw, 140px); background: transparent; color: var(--white); }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Section eyebrow: a translucent tag. */
 .label {
   display: inline-block;
-  font: 600 0.8rem/1 var(--mono);
-  text-transform: uppercase;
+  margin-bottom: 22px;
+  padding: 7px 12px;
+  font: 500 0.75rem/1 var(--mono);
   letter-spacing: 0.14em;
-  color: var(--accent);
-  margin-bottom: 18px;
+  text-transform: uppercase;
+  background: var(--tile-strong);
 }
+
+.lead { font-size: var(--step-1); max-width: 50ch; margin-top: 22px; color: var(--on-dark-muted); }
 
 .button {
-  display: inline-block;
-  padding: 16px 28px;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 26px;
+  font: 600 var(--step-0)/1 var(--display);
   text-decoration: none;
-  background: var(--accent);
-  color: var(--accent-text);
-  transition: transform 0.12s, box-shadow 0.12s;
+  background: var(--white);
+  color: var(--night);
 }
-.button.secondary { background: var(--panel); color: var(--text); }
-.button:hover { transform: translate(-3px, -3px); box-shadow: 3px 3px 0 var(--accent-2); }
-:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+.button:hover { background: var(--night); color: var(--white); text-decoration: none; }
+.button.ghost { background: var(--tile-strong); color: var(--white); }
+.button.ghost:hover { background: var(--white); color: var(--night); }
 
-code, pre { font-family: var(--mono); font-size: 0.9em; }
-code { background: var(--panel); padding: 0.15em 0.45em; }
-pre { background: var(--panel); padding: 18px 20px; overflow-x: auto; border-left: 6px solid var(--accent); }
-pre code { padding: 0; background: none; }
+/* White viewfinder corners around whatever it wraps, like the app icon. */
+.viewfinder {
+  --c: var(--white);
+  --len: clamp(18px, 2.8vw, 34px);
+  --w: 3px;
+  padding: clamp(10px, 1.4vw, 16px);
+  background:
+    linear-gradient(var(--c) 0 0) top left / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) top left / var(--w) var(--len),
+    linear-gradient(var(--c) 0 0) top right / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) top right / var(--w) var(--len),
+    linear-gradient(var(--c) 0 0) bottom left / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) bottom left / var(--w) var(--len),
+    linear-gradient(var(--c) 0 0) bottom right / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) bottom right / var(--w) var(--len);
+  background-repeat: no-repeat;
+}
+
+/* A selection rectangle with square handles and a size tag, in white. */
+.selection {
+  position: relative;
+  outline: 2px solid var(--white);
+}
+.selection > .handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--rose);
+  outline: 2px solid var(--white);
+}
+.selection > .handle:nth-of-type(1) { top: -6px; left: -6px; }
+.selection > .handle:nth-of-type(2) { top: -6px; right: -6px; }
+.selection > .handle:nth-of-type(3) { bottom: -6px; left: -6px; }
+.selection > .handle:nth-of-type(4) { bottom: -6px; right: -6px; }
+.selection > .size {
+  position: absolute;
+  left: -2px;
+  top: calc(100% + 10px);
+  padding: 4px 8px;
+  white-space: nowrap;
+  font: 500 0.75rem/1 var(--mono);
+  letter-spacing: 0;
+  background: var(--white);
+  color: var(--night);
+}
+
+/* A section reached from the nav is focused for keyboard users, but needs no outline. */
+section[tabindex='-1']:focus, header[tabindex='-1']:focus { outline: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .button { transition: none; }
 }

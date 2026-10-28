@@ -1,16 +1,50 @@
 ---
-import { REPO, LICENSE } from '../config';
+import { REPO, RELEASES, SUPPORT } from '../config';
 import { useTranslations } from '../i18n';
+import { toAscii } from '../lib/ascii';
+import Cup from './Cup.astro';
+
 const t = useTranslations(Astro.currentLocale).footer;
+const cat = await toAscii('public/icon.svg', 64, 30);
 ---
-<footer>
-  <div class="wrap">
-    <p>{t.license} <a href={LICENSE}>{t.licenseLink}</a>.</p>
-    <p><a href={REPO}>{t.source}</a> · <a href={`${REPO}/issues`}>{t.issues}</a></p>
+<footer class="band">
+  <div class="wrap grid">
+    <pre aria-hidden="true">{cat}</pre>
+    <div class="text">
+      <p class="name">shortty</p>
+      <p>{t.tagline}</p>
+      <p>{t.license}</p>
+      <ul>
+        <li><a href={REPO}>{t.source}</a></li>
+        <li><a href={RELEASES}>{t.releases}</a></li>
+        <li><a href={`${REPO}/issues`}>{t.issues}</a></li>
+      </ul>
+      <a class="support" href={SUPPORT}>
+        <Cup />
+        <span><strong>{t.support}</strong> {t.supportNote}</span>
+      </a>
+    </div>
   </div>
 </footer>
 
 <style>
-  footer { background: var(--bg-alt); padding: 48px 0; color: var(--muted); font: 0.9rem var(--mono); }
-  footer p { margin: 0 0 0.5em; }
+  .grid { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 64px; }
+  pre { margin: 0; color: var(--white); font-size: clamp(6px, 1.2vw, 12px); line-height: 1.1; font-weight: 500; }
+  .text { display: grid; gap: 6px; color: var(--on-dark-muted); }
+  .name { font: 800 var(--step-3)/1 var(--display); letter-spacing: -0.06em; color: var(--white); margin-bottom: 12px; }
+  ul { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; margin: 18px 0 0; padding: 0; }
+
+  .support { display: flex; align-items: center; gap: 14px; width: fit-content; margin-top: 32px; color: var(--on-dark-muted); text-decoration: none; }
+  .support strong { color: var(--white); font-family: var(--display); font-weight: 700; }
+  .support:hover, .support:hover strong { color: var(--white); }
+  .support:hover strong { text-decoration: underline; }
+
+  /* Stacked: everything on the cat's center line. */
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 48px; text-align: center; }
+    .text { justify-items: center; }
+    ul { justify-content: center; }
+    .support { flex-direction: column; gap: 10px; }
+    .support span { max-width: 30ch; }
+  }
 </style>
