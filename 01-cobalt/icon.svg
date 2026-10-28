@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Shortty: a cat's head drawn with the viewfinder's corners, glowing like neon.
+       Plain shapes only (no SVG filters): AppKit's renderer, used by Scripts/make-icon.swift, ignores them.
+       The glow and the shadow are stacks of faint, widening copies instead. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#303037"/>
+      <stop offset="1" stop-color="#151518"/>
+    </linearGradient>
+    <linearGradient id="neon" gradientUnits="userSpaceOnUse" x1="0" y1="220" x2="0" y2="820">
+      <stop offset="0" stop-color="#FF8F55"/>
+      <stop offset="1" stop-color="#FF5A2C"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.12"/>
+      <stop offset="0.45" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- soft shadow under the body -->
+  <rect x="82" y="96" width="860" height="860" rx="203" fill="#000" fill-opacity="0.045"/>
+  <rect x="85" y="98" width="854" height="854" rx="200" fill="#000" fill-opacity="0.045"/>
+  <rect x="88" y="100" width="848" height="848" rx="197" fill="#000" fill-opacity="0.045"/>
+  <rect x="91" y="102" width="842" height="842" rx="194" fill="#000" fill-opacity="0.045"/>
+  <rect x="94" y="104" width="836" height="836" rx="191" fill="#000" fill-opacity="0.045"/>
+  <rect x="97" y="106" width="830" height="830" rx="188" fill="#000" fill-opacity="0.045"/>
+
+  <!-- macOS icon body: 824pt rounded square on the 1024 grid -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+
+  <!-- glow -->
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="140" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="132" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="124" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="116" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="108" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="100" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="92" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="84" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="76" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="68" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="60" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <g fill="none" stroke="#FF6B3D" stroke-opacity="0.035" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+
+  <!-- the mark: ears joined across the head, cheeks as the bottom corners -->
+  <g fill="none" stroke="url(#neon)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+  <!-- bright core of the tube -->
+  <g fill="none" stroke="#FFD2BC" stroke-opacity="0.55" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M238 500 L266 250 L414 368 Q512 334 610 368 L758 250 L786 500"/>
+    <path d="M238 624 V672 C238 742 290 790 362 790 H420"/>
+    <path d="M786 624 V672 C786 742 734 790 662 790 H604"/>
+  </g>
+
+  <!-- sheen and edge -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#sheen)"/>
+  <rect x="101" y="101" width="822" height="822" rx="184" fill="none" stroke="#fff" stroke-opacity="0.1" stroke-width="2"/>
+</svg>
