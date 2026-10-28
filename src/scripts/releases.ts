@@ -35,6 +35,16 @@ async function load(api: string): Promise<GitHubRelease[]> {
   return releases;
 }
 
+// The template holds spans where the links go (see Releases.astro); this swaps one for a link,
+// keeping its attributes so the design's styles still apply.
+function toLink(placeholder: HTMLElement): HTMLAnchorElement {
+  const link = document.createElement('a');
+  for (const { name, value } of placeholder.attributes) link.setAttribute(name, value);
+  link.append(...placeholder.childNodes);
+  placeholder.replaceWith(link);
+  return link;
+}
+
 function render(release: GitHubRelease, latest: boolean, formatDate: Intl.DateTimeFormat): HTMLDetailsElement {
   const details = template!.content.firstElementChild!.cloneNode(true) as HTMLDetailsElement;
   const name = release.name || release.tag_name;
@@ -56,13 +66,13 @@ function render(release: GitHubRelease, latest: boolean, formatDate: Intl.DateTi
   notes.querySelectorAll('a.anchor').forEach((anchor) => anchor.remove());
 
   const dmg = release.assets.find((asset) => asset.name.endsWith('.dmg'));
-  const download = details.querySelector<HTMLAnchorElement>('[data-download]')!;
+  const download = toLink(details.querySelector<HTMLElement>('[data-download]')!);
   if (dmg) {
     download.href = dmg.browser_download_url;
     download.textContent = `${download.dataset.label} ${dmg.name} ↓`;
     download.setAttribute('aria-label', `${download.dataset.label} ${dmg.name}`);
   } else download.remove();
-  const github = details.querySelector<HTMLAnchorElement>('[data-github]')!;
+  const github = toLink(details.querySelector<HTMLElement>('[data-github]')!);
   github.href = release.html_url;
   github.setAttribute('aria-label', `${github.dataset.label}: ${name}`);
   return details;
