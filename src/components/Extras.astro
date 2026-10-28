@@ -19,7 +19,7 @@ const t = useTranslations(Astro.currentLocale).extras;
 
 <style>
   ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 6px; list-style: none; margin: 80px 0 0; padding: 0; }
-  li { position: relative; padding: 28px 26px; background: var(--light); }
+  li { position: relative; padding: 28px 26px; background: var(--light); color: var(--dark); }
   li::before, li::after { content: ''; position: absolute; top: -22px; width: 28px; height: 26px; background: var(--light); }
   li::before { left: 18px; clip-path: polygon(0 100%, 28% 0, 100% 100%); }
   li::after { right: 18px; clip-path: polygon(0 100%, 72% 0, 100% 100%); }
