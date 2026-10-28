@@ -1,35 +1,72 @@
 ---
 import { RELEASES, REPO } from '../config';
 import { useTranslations } from '../i18n';
+
 const t = useTranslations(Astro.currentLocale).install;
+const unquarantine = 'xattr -dr com.apple.quarantine /Applications/Shortty.app';
+const build = `brew install xcodegen\ngit clone ${REPO}.git\ncd Shortty\nScripts/install.sh`;
+const update = 'git pull && Scripts/install.sh';
 ---
-<section id="install">
+<section class="band light" id="install">
   <div class="wrap">
     <span class="label">{t.label}</span>
     <h2>{t.title}</h2>
     <p class="lead">{t.lead}</p>
 
-    <h3>{t.option1}</h3>
-    <ol>
-      {t.steps.map((step) => <li set:html={step.replace('{releases}', RELEASES)} />)}
-    </ol>
-    <p>{t.terminalNote}</p>
-    <pre><code>xattr -dr com.apple.quarantine /Applications/Shortty.app</code></pre>
-    <p>{t.update}</p>
-
-    <h3>{t.option2}</h3>
-    <p set:html={t.build} />
-    <pre><code>brew install xcodegen
-git clone {REPO}.git
-cd Shortty
-Scripts/install.sh</code></pre>
-    <p>{t.buildUpdate} <code>git pull &amp;&amp; Scripts/install.sh</code></p>
+    <div class="grid">
+      <div>
+        <h3>{t.download.title}</h3>
+        <ol>
+          {t.download.steps.map((step) => <li><span set:html={step.replace('{releases}', RELEASES)} /></li>)}
+        </ol>
+        <p class="note">{t.download.terminal}</p>
+        <div class="code"><pre><code>{unquarantine}</code></pre><button type="button" data-copy={unquarantine}>{t.copy}</button></div>
+        <p class="note">{t.download.update}</p>
+      </div>
+      <div>
+        <h3>{t.build.title}</h3>
+        <p class="note" set:html={t.build.text} />
+        <div class="code"><pre><code>{build}</code></pre><button type="button" data-copy={build}>{t.copy}</button></div>
+        <p class="note">{t.build.update}</p>
+        <div class="code"><pre><code>{update}</code></pre><button type="button" data-copy={update}>{t.copy}</button></div>
+      </div>
+    </div>
   </div>
+  <span hidden data-copied-text>{t.copied}</span>
 </section>
 
+<script>
+  const copiedText = document.querySelector('[data-copied-text]')!.textContent!;
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
+    const label = button.textContent!;
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy!);
+        button.textContent = copiedText;
+        setTimeout(() => (button.textContent = label), 1600);
+      } catch {
+        // Clipboard not allowed here: select the text so it can be copied by hand.
+        getSelection()?.selectAllChildren(button.previousElementSibling!);
+      }
+    });
+  }
+</script>
+
 <style>
-  ol { padding-left: 1.3em; max-width: 70ch; }
-  ol li { margin-bottom: 0.7em; }
-  h3 { margin-top: 2.4em; }
-  .lead + h3 { margin-top: 2em; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; margin-top: 64px; }
+  h3 { font: 400 var(--step-2)/1.1 var(--display); margin-bottom: 22px; }
+
+  ol { list-style: none; counter-reset: step; margin: 0 0 32px; padding: 0; display: grid; gap: 6px; }
+  li { counter-increment: step; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 12px; padding: 14px 18px; background: var(--white); color: var(--on-light-muted); }
+  li::before { content: counter(step); font: 400 1.6rem/1 var(--display); color: var(--accent); }
+  li :global(strong), li :global(a) { color: var(--dark); }
+
+  .note { color: var(--on-light-muted); margin-bottom: 14px; }
+
+  .code { position: relative; margin-bottom: 28px; background: var(--dark); color: var(--white); }
+  pre { margin: 0; padding: 18px 20px; padding-right: 88px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.88rem; line-height: 1.7; }
+  button { position: absolute; top: 10px; right: 10px; padding: 6px 10px; border: 0; background: var(--accent); color: var(--on-accent); font: 400 0.95rem/1 var(--display); cursor: pointer; }
+  button:hover { background: var(--white); }
+
+  @media (max-width: 900px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
 </style>
