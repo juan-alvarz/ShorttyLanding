@@ -29,7 +29,7 @@ const images = [classic, twoRows, sidebars, canvasFirst];
       {t.items.map(([name, text], i) => (
         <figure class="panel" data-index={i}>
           <div class="viewfinder">
-            <Image src={images[i]} alt={`${name}: ${text}`} widths={[640, 1200]} sizes="(min-width: 1200px) 1130px, 100vw" />
+            <Image src={images[i]} alt={`The Shortty editor in the ${name} layout`} widths={[640, 1200]} sizes="(min-width: 1200px) 1130px, 100vw" />
           </div>
           <figcaption>{text}</figcaption>
         </figure>

@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import icon from '../assets/icon.png';
 import hero from '../assets/hero.png';
 import { RELEASES, REPO } from '../config';
 import { useTranslations } from '../i18n';
@@ -13,24 +12,30 @@ const bone: [number, number, number] = [232, 232, 226];
 const shotDots = await dither('src/assets/hero.png', 565, ink, bone);
 const catDots = await dither('public/icon.svg', 96, ink, bone);
 const [before, selected, after] = t.hero.headline;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<header class="hero" data-capture-area data-try-text={`${t.hero.tryIt} →`} data-try-href={RELEASES}>
-  <nav class="wrap">
+<!-- Sticky: stays at the top while scrolling and marks the section on screen (see src/scripts/scroll.ts). -->
+<div class="navbar" data-navbar>
+  <nav class="wrap" aria-label={t.nav.label}>
     <a class="brand" href="#top" aria-label="Shortty">
-      <Image src={icon} alt="" width={36} height={36} />
+      <img src={`${base}/icon.svg`} alt="" width="36" height="36" />
       <span>shortty</span>
+      <span class="where" data-where aria-hidden="true"></span>
     </a>
     <ul>
-      <li class="optional"><a href="#capture">{t.nav.capture}</a></li>
-      <li class="optional"><a href="#edit">{t.nav.edit}</a></li>
-      <li class="optional"><a href="#layouts">{t.nav.layouts}</a></li>
-      <li class="optional"><a href="#install">{t.nav.install}</a></li>
-      <li><a href={REPO}>{t.nav.github}</a></li>
+      <li class="optional"><a href="#capture" data-nav>{t.nav.capture}</a></li>
+      <li class="optional"><a href="#edit" data-nav>{t.nav.edit}</a></li>
+      <li class="optional"><a href="#layouts" data-nav>{t.nav.layouts}</a></li>
+      <li class="optional"><a href="#install" data-nav>{t.nav.install}</a></li>
+      <li class="optional"><a href="#releases" data-nav>{t.nav.releases}</a></li>
+      <li class="github"><a href={REPO}>{t.nav.github}</a></li>
       <li><a class="button" href={RELEASES}>{t.nav.download}</a></li>
     </ul>
   </nav>
+</div>
 
-  <div class="wrap intro" id="top">
+<header class="hero" id="top" data-capture-area data-try-text={`${t.hero.tryIt} →`} data-try-href={RELEASES}>
+  <div class="wrap intro">
     <img class="cat" src={catDots} alt="" width="96" height="96" />
     <h1>
       <span>{before}</span>
@@ -127,13 +132,20 @@ const [before, selected, after] = t.hero.headline;
 
 <style>
   .hero { position: relative; cursor: crosshair; background: var(--light); color: var(--dark); }
-  .hero a, .hero nav { cursor: pointer; }
+  .hero a { cursor: pointer; }
 
-  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; cursor: default; }
+  .navbar { position: sticky; top: 0; z-index: 50; background: var(--light); color: var(--dark); }
+  /* Once scrolled, the bar gets the page's dotted rule. */
+  .navbar[data-scrolled] { background: linear-gradient(90deg, var(--dark) 50%, transparent 0) bottom / 6px 1px repeat-x, var(--light); }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
   .brand { display: flex; align-items: center; gap: 10px; font: italic 400 1.6rem/1 var(--display); text-decoration: none; }
-  .brand :global(img) { width: 30px; height: 30px; }
+  .brand img { width: 30px; height: 30px; }
+  .where { display: none; font-size: 1.2rem; color: var(--on-light-muted); }
+  .where:not(:empty)::before { content: '/ '; }
   nav ul { display: flex; align-items: center; gap: 26px; list-style: none; margin: 0; padding: 0; font: 500 0.75rem/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; }
   nav ul a:not(.button) { text-decoration: none; }
+  /* The section on screen: an orange rule under the word. */
+  nav ul a[aria-current] { box-shadow: 0 6px 0 -4px var(--accent); }
   nav .button { padding: 11px 15px; }
 
   .intro {
@@ -173,6 +185,7 @@ const [before, selected, after] = t.hero.headline;
     .intro { grid-template-columns: auto minmax(0, 1fr); }
     .side { grid-column: 1 / -1; }
     .optional { display: none; }
+    .where { display: inline; }
     .hint { display: none; }
   }
   @media (max-width: 560px) {
@@ -182,5 +195,10 @@ const [before, selected, after] = t.hero.headline;
   /* On phones the headline lines sit close together: leave room for the size tag under the frame. */
   @media (max-width: 600px) {
     h1 .selection { margin-bottom: 40px; }
+  }
+
+  /* Phones: the section name takes the GitHub link's place (it is in the footer too). */
+  @media (max-width: 480px) {
+    .github { display: none; }
   }
 </style>

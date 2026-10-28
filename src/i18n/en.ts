@@ -11,7 +11,9 @@ export const en = {
     edit: 'Edit',
     layouts: 'Layouts',
     install: 'Install',
+    releases: 'Releases',
     github: 'GitHub',
+    label: 'Sections',
     download: 'Download',
   },
 
@@ -64,6 +66,7 @@ export const en = {
       ['X', 'Recognize text', 'Live Text: select exactly the words you want.'],
       ['K', 'Text Card', 'Code or a chat, redrawn as a clean card.'],
       ['C', 'Crop', 'Undo brings the whole picture back.'],
+      ['U', 'Ruler', 'Measure to the nearest edges, in pixels.'],
     ],
   },
 
@@ -72,10 +75,13 @@ export const en = {
     title: 'The small things that add up.',
     items: [
       ['Text Card', 'Drag over code, a terminal or a chat and it is redrawn as a window-like card, every word in the color it had. Syntax highlighting survives.'],
+      ['Ruler', 'Point at anything to measure it. Lines run to the nearest edges with their length in pixels; hold 1 or 2 to measure one way.'],
+      ['Quick card', 'Skip the editor when you want: a small card in the corner offers Copy, Save, Pin and Edit, then goes away on its own.'],
       ['Recent captures', 'The last 20 captures keep their edits, even after a relaunch. Click one to keep working on it.'],
       ['Drag and drop', 'Drag the finished picture into any app or upload box. Nothing piles up in Downloads.'],
       ['Pin to screen', 'Float a capture above every window while you work from it.'],
       ['Gradient backdrop', 'Put the result on a gradient card with padding and a soft shadow, ready to post.'],
+      ['Room to work', 'Draw or type past the edges of the screenshot and the canvas grows to fit.'],
       ['Private', 'Text is recognized on your Mac with Apple Vision and Live Text. Nothing leaves it.'],
     ],
   },
@@ -118,12 +124,25 @@ export const en = {
     copied: 'Copied',
   },
 
+  releases: {
+    label: 'Releases',
+    title: 'What’s new.',
+    lead: 'The latest versions, with their notes from GitHub.',
+    latest: 'Latest',
+    prerelease: 'Pre-release',
+    download: 'Download',
+    onGitHub: 'Release on GitHub',
+    all: 'All releases',
+  },
+
   footer: {
     tagline: 'A free screenshot tool for macOS.',
     license: 'Free and open source under the MIT license.',
     source: 'Source',
     releases: 'Releases',
     issues: 'Issues',
+    support: 'Support',
+    supportNote: 'Free for everyone. Coffee optional.',
   },
 };
 

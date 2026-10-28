@@ -16,7 +16,7 @@ const BAYER = [
 
 type RGB = [number, number, number];
 
-export async function dither(path: string, width: number, ink: RGB, paper: RGB): Promise<string> {
+export async function dither(path: string | Buffer, width: number, ink: RGB, paper: RGB): Promise<string> {
   const { data, info } = await sharp(path)
     .resize({ width })
     .flatten({ background: '#000' })

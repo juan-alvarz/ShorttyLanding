@@ -1,0 +1,38 @@
+---
+import { dither } from '../lib/dither';
+
+// The footer's coffee cup, dither style: a shaded mug dithered at build time into bone dots on ink,
+// that "develops" into a clean drawing on hover, like the hero screenshot.
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="mug" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.7" stop-color="#777"/><stop offset="1" stop-color="#333"/></linearGradient>
+    <linearGradient id="steam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ccc"/><stop offset="1" stop-color="#000"/></linearGradient>
+  </defs>
+  <path d="M22 24c-5-5 5-8 0-14M32 24c-5-5 5-8 0-14M42 24c-5-5 5-8 0-14" fill="none" stroke="url(#steam)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M12 28h40v16c0 9-7 14-14 14H26c-7 0-14-5-14-14z" fill="url(#mug)"/>
+  <path d="M52 32h3c4 0 6 3 6 6s-2 7-6 7h-4" fill="none" stroke="#999" stroke-width="4"/>
+  <ellipse cx="32" cy="28" rx="20" ry="3" fill="#555"/>
+</svg>`;
+const ink: [number, number, number] = [24, 32, 170];
+const bone: [number, number, number] = [232, 232, 226];
+// Bright parts of the drawing become bone dots; the dark background becomes the footer's ink.
+const dots = await dither(Buffer.from(svg), 64, bone, ink);
+---
+<span class="cup" aria-hidden="true">
+  <img class="dots" src={dots} alt="" width="64" height="64" />
+  <svg class="smooth" viewBox="0 0 64 64">
+    <path d="M22 24c-5-5 5-8 0-14M32 24c-5-5 5-8 0-14M42 24c-5-5 5-8 0-14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+    <path d="M12 28h40v16c0 9-7 14-14 14H26c-7 0-14-5-14-14z" fill="currentColor" />
+    <path d="M52 32h3c4 0 6 3 6 6s-2 7-6 7h-4" fill="none" stroke="currentColor" stroke-width="4" />
+  </svg>
+</span>
+
+<style>
+  .cup { display: grid; flex: none; width: 64px; height: 64px; color: var(--white); }
+  .cup > * { grid-area: 1 / 1; width: 100%; height: 100%; }
+  .dots { image-rendering: pixelated; transition: opacity 0.35s; }
+  .smooth { opacity: 0; transition: opacity 0.35s; }
+  :global(a:hover) > .cup .dots, :global(a:focus-visible) > .cup .dots { opacity: 0; }
+  :global(a:hover) > .cup .smooth, :global(a:focus-visible) > .cup .smooth { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .dots, .smooth { transition: none; } }
+</style>
