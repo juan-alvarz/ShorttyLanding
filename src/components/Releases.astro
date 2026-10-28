@@ -1,7 +1,7 @@
 ---
 import { ALL_RELEASES } from '../config';
 import { useTranslations } from '../i18n';
-import { getReleases } from '../lib/releases';
+import { API, LIMIT, getReleases } from '../lib/releases';
 
 const t = useTranslations(Astro.currentLocale);
 const releases = await getReleases();
@@ -13,10 +13,11 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
     <h2>{t.releases.title}</h2>
     <p class="lead">{t.releases.lead}</p>
 
-    <!-- One open at a time (details with a shared name); the latest starts open. -->
-    <div class="list" data-accordion>
+    <!-- One open at a time (details with a shared name); the latest starts open. Built from GitHub at
+         build time, then refreshed in the browser (src/scripts/releases.ts). -->
+    <div class="list" data-accordion data-releases={API} data-limit={LIMIT} data-lang={t.htmlLang}>
       {releases.map((release, i) => (
-        <details name="release" open={i === 0}>
+        <details name="release" open={i === 0} data-tag={release.tag}>
           <summary>
             <span class="version">{release.name}</span>
             {release.date && <time datetime={release.date.toISOString()}>{formatDate.format(release.date)}</time>}
@@ -34,12 +35,31 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
         </details>
       ))}
     </div>
+    <!-- One release, empty: the browser fills copies of it with newer releases. -->
+    <template data-release-template>
+      <details name="release">
+        <summary>
+          <span class="version"></span>
+          <time></time>
+          <span class="tag" data-latest>{t.releases.latest}</span>
+          <span class="tag" data-prerelease>{t.releases.prerelease}</span>
+        </summary>
+        <div class="body">
+          <div class="notes"></div>
+          <p class="links">
+            <a class="button" data-download data-label={t.releases.download}></a>
+            <a class="button ghost" data-github data-label={t.releases.onGitHub}>{t.releases.onGitHub} →</a>
+          </p>
+        </div>
+      </details>
+    </template>
     <p class="all"><a href={ALL_RELEASES}>{t.releases.all} →</a></p>
   </div>
 </section>
 
 <script>
   import '../scripts/accordion';
+  import '../scripts/releases';
 </script>
 
 <style>
