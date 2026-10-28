@@ -22,7 +22,7 @@ const t = useTranslations(Astro.currentLocale).capture;
 
 <style>
   .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 64px; }
-  .intro { position: sticky; top: 32px; align-self: start; }
+  .intro { position: sticky; top: calc(var(--nav-h, 76px) + 32px); align-self: start; }
   dl { margin: 0; display: grid; gap: 6px; }
   dl > div {
     display: grid;
