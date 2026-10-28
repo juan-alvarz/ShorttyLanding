@@ -25,7 +25,7 @@ export interface Release {
   download?: { name: string; url: string };
 }
 
-const LIMIT = 6;
+export const LIMIT = 6;
 export const API = `https://api.github.com/repos/${REPO_SLUG}/releases?per_page=20`;
 
 export async function fetchReleases(): Promise<GitHubRelease[]> {
