@@ -46,9 +46,11 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
         </summary>
         <div class="body">
           <div class="notes"></div>
+          <!-- Spans, not links: Astro's compiler copies <a> tags in a <template> out into the page.
+               src/scripts/releases.ts turns them into links. -->
           <p class="links">
-            <a class="button" data-download data-label={t.releases.download}></a>
-            <a class="button ghost" data-github data-label={t.releases.onGitHub}>{t.releases.onGitHub} →</a>
+            <span class="button" data-download data-label={t.releases.download}></span>
+            <span class="button ghost" data-github data-label={t.releases.onGitHub}>{t.releases.onGitHub} →</span>
           </p>
         </div>
       </details>
@@ -77,6 +79,9 @@ const formatDate = new Intl.DateTimeFormat(t.htmlLang, { dateStyle: 'medium', ti
   summary::-webkit-details-marker { display: none; }
   summary::after { content: '+'; margin-left: auto; font-weight: 600; }
   details[open]:not([data-closing]) summary::after { content: '−'; }
+  /* Closed releases hide their notes completely (the browser only collapses them), so checkers
+     don't read their headings as empty. */
+  details:not([open]) > .body { display: none; }
   summary:hover .version { color: var(--accent); }
   summary:focus-visible { outline: 2px solid var(--dark); outline-offset: 2px; }
   .version { font: 600 var(--step-2)/1.1 var(--display); }
