@@ -1,7 +1,8 @@
 ---
-import { REPO, RELEASES } from '../config';
+import { REPO, RELEASES, SUPPORT } from '../config';
 import { useTranslations } from '../i18n';
 import { toAscii } from '../lib/ascii';
+import Cup from './Cup.astro';
 
 const t = useTranslations(Astro.currentLocale).footer;
 const cat = await toAscii('public/icon.svg', 64, 30);
@@ -18,18 +19,34 @@ const cat = await toAscii('public/icon.svg', 64, 30);
         <li><a href={RELEASES}>{t.releases}</a></li>
         <li><a href={`${REPO}/issues`}>{t.issues}</a></li>
       </ul>
+      <a class="support" href={SUPPORT}>
+        <Cup />
+        <span><strong>{t.support}</strong> {t.supportNote}</span>
+      </a>
     </div>
   </div>
 </footer>
 
 <style>
   footer { padding-block: 88px 72px; }
-  .grid { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: end; gap: 48px; }
+  .grid { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 64px; }
   pre { margin: 0; color: var(--accent); font-size: clamp(7px, 1.4vw, 14px); line-height: 1.1; font-weight: 500; }
   .text { display: grid; gap: 6px; color: var(--on-dark-muted); }
   .name { font: 400 var(--step-3)/1 var(--display); color: var(--white); margin-bottom: 12px; }
   ul { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; margin: 18px 0 0; padding: 0; font-weight: 700; }
   a { color: var(--white); }
 
-  @media (max-width: 700px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .support { display: flex; align-items: center; gap: 14px; width: fit-content; margin-top: 32px; color: var(--on-dark-muted); text-decoration: none; }
+  .support strong { color: var(--white); font: 400 1.25rem/1 var(--display); }
+  .support:hover, .support:hover strong { color: var(--accent); }
+  .support:hover strong { text-decoration: underline; }
+
+  /* Stacked: everything on the cat's center line. */
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 48px; text-align: center; }
+    .text { justify-items: center; }
+    ul { justify-content: center; }
+    .support { flex-direction: column; gap: 10px; }
+    .support span { max-width: 30ch; }
+  }
 </style>
