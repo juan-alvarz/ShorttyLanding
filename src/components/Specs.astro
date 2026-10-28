@@ -1,0 +1,30 @@
+---
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.currentLocale);
+---
+<div class="specs">
+  <ul class="wrap">
+    {t.specs.map((spec) => <li>{spec}</li>)}
+  </ul>
+</div>
+
+<style>
+  .specs { background: var(--dark); color: var(--white); }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin-block: 0;
+    padding-block: 28px;
+    font: 500 0.8rem/1 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  li { padding: 8px 12px; color: var(--dark); }
+  li:nth-child(5n + 1) { background: var(--lilac); }
+  li:nth-child(5n + 2) { background: var(--mint); }
+  li:nth-child(5n + 3) { background: var(--peach); }
+  li:nth-child(5n + 4) { background: var(--butter); }
+  li:nth-child(5n + 5) { background: var(--sky); }
+</style>

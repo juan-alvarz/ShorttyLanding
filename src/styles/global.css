@@ -1,69 +1,161 @@
-/* Dark, flat, sharp. No borders, no rounded corners: color blocks and one hard accent. */
+/*
+  Layout (version 08, pastel): Arc's friendly side. Every section is its own pastel
+  band (lilac, mint, peach, butter, sky), Young Serif headlines in soft ink,
+  Onest for reading, DM Mono for small labels. Shortty orange for selections, and
+  screenshots sit on offset color blocks. Sharp corners, no card borders.
+*/
+@import '@fontsource/young-serif/latin-400.css';
+@import '@fontsource/onest/latin-400.css';
+@import '@fontsource/onest/latin-600.css';
+@import '@fontsource/dm-mono/latin-400.css';
+@import '@fontsource/dm-mono/latin-500.css';
+
 :root {
-  --bg: #0e0d10;
-  --bg-alt: #17151b;
-  --panel: #1f1c25;
-  --text: #f6f3ee;
-  --muted: #a39fae;
+  color-scheme: light;
+
+  /* Color, named by role, plus the pastel set. Here: dark = soft ink, accent = Shortty orange. */
+  --lilac: #ddd5ff;
+  --mint: #c9f0dc;
+  --peach: #ffd8c4;
+  --butter: #fff0b3;
+  --sky: #cfe4ff;
+  --primary: var(--lilac);
+  --dark: #221d3a;
+  --dark-raised: #2f2950;
+  --light: #fbfaff;
+  --light-raised: #ffffff;
   --accent: #ff6b3d;
-  --accent-2: #ff3d81;
-  --accent-text: #170a05;
-  --max: 1120px;
-  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --white: #ffffff;
+  --on-dark-muted: #b9b3d6;
+  --on-light-muted: #4f4870;
+
+  /* Type */
+  --display: 'Young Serif', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Onest', 'Avenir Next', 'Helvetica Neue', sans-serif;
+  --mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --step-0: 1.05rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.4rem, 2.8vw, 1.85rem);
+  --step-3: clamp(2.4rem, 6vw, 4.4rem);
+  --step-4: clamp(3.4rem, 11vw, 8.8rem);
+
+  --max: 1180px;
 }
 
-* { box-sizing: border-box; border-radius: 0; }
+* { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* --nav-h is the sticky nav's height, kept up to date by src/scripts/scroll.ts. */
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h, 76px); }
+/* Lenis does the easing when it runs; the browser's own would fight it. */
+html.lenis.lenis-smooth { scroll-behavior: auto; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 18px/1.6 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--lilac);
+  color: var(--dark);
+  font: 400 var(--step-0)/1.6 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--accent); text-underline-offset: 3px; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--dark); outline-offset: 3px; }
 
-h1, h2, h3 { line-height: 1.05; margin: 0 0 0.5em; letter-spacing: -0.035em; font-weight: 800; }
-h1 { font-size: clamp(2.8rem, 8vw, 6rem); }
-h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
-h3 { font-size: 1.2rem; letter-spacing: -0.015em; }
-p { margin: 0 0 1em; }
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+h2 { font: 400 var(--step-3)/1.02 var(--display); letter-spacing: -0.02em; }
+h3 { font: 600 var(--step-0)/1.3 var(--sans); }
+p { margin: 0; }
+strong { font-weight: 600; }
 
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-section { padding: 96px 0; }
-section.alt { background: var(--bg-alt); }
-.lead { color: var(--muted); font-size: 1.2rem; max-width: 56ch; }
+code, pre { font-family: var(--mono); }
 
+/* Each section is a pastel band. */
+.band { padding-block: clamp(80px, 11vw, 140px); color: var(--dark); }
+.band.lilac { background: var(--lilac); }
+.band.mint { background: var(--mint); }
+.band.peach { background: var(--peach); }
+.band.butter { background: var(--butter); }
+.band.sky { background: var(--sky); }
+.band.dark { background: var(--dark); color: var(--white); }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Section eyebrow: a small ink tag. */
 .label {
   display: inline-block;
-  font: 600 0.8rem/1 var(--mono);
+  margin-bottom: 24px;
+  padding: 6px 10px;
+  font: 500 0.75rem/1 var(--mono);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  margin-bottom: 18px;
+  background: var(--dark);
+  color: var(--white);
 }
+.dark .label { background: var(--accent); color: var(--dark); }
+
+.lead { font-size: var(--step-1); max-width: 48ch; margin-top: 22px; color: var(--on-light-muted); }
+.dark .lead { color: var(--on-dark-muted); }
 
 .button {
-  display: inline-block;
-  padding: 16px 28px;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 26px;
+  font: 600 var(--step-0)/1 var(--sans);
   text-decoration: none;
-  background: var(--accent);
-  color: var(--accent-text);
-  transition: transform 0.12s, box-shadow 0.12s;
+  background: var(--dark);
+  color: var(--white);
+  box-shadow: 5px 5px 0 var(--accent);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.button.secondary { background: var(--panel); color: var(--text); }
-.button:hover { transform: translate(-3px, -3px); box-shadow: 3px 3px 0 var(--accent-2); }
-:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+.button:hover { color: var(--white); transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--accent); }
+.button.ghost { background: transparent; color: inherit; padding-inline: 4px; text-decoration: underline; box-shadow: none; transform: none; }
+.button.ghost:hover { color: var(--accent); }
 
-code, pre { font-family: var(--mono); font-size: 0.9em; }
-code { background: var(--panel); padding: 0.15em 0.45em; }
-pre { background: var(--panel); padding: 18px 20px; overflow-x: auto; border-left: 6px solid var(--accent); }
-pre code { padding: 0; background: none; }
+/* Screenshots sit on an offset block of another pastel. */
+.viewfinder {
+  --c: var(--peach);
+  padding: 0;
+  background: none;
+  box-shadow: 18px 18px 0 var(--c);
+}
+
+/* A selection rectangle with square handles and a size tag, like Shortty's own. */
+.selection {
+  position: relative;
+  outline: 2px solid var(--accent);
+}
+.selection > .handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--white);
+  outline: 2px solid var(--accent);
+}
+.selection > .handle:nth-of-type(1) { top: -6px; left: -6px; }
+.selection > .handle:nth-of-type(2) { top: -6px; right: -6px; }
+.selection > .handle:nth-of-type(3) { bottom: -6px; left: -6px; }
+.selection > .handle:nth-of-type(4) { bottom: -6px; right: -6px; }
+.selection > .size {
+  position: absolute;
+  left: -2px;
+  top: calc(100% + 10px);
+  padding: 5px 9px;
+  white-space: nowrap;
+  font: 500 0.75rem/1 var(--mono);
+  letter-spacing: 0.04em;
+  background: var(--accent);
+  color: var(--dark);
+}
+
+/* A section reached from the nav is focused for keyboard users, but needs no outline. */
+section[tabindex='-1']:focus, header[tabindex='-1']:focus { outline: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

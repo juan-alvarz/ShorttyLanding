@@ -6,4 +6,8 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en'],
   },
+  build: {
+    // One small page: keep its CSS in the HTML.
+    inlineStylesheets: 'always',
+  },
 });

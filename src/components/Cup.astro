@@ -1,0 +1,32 @@
+---
+// The footer's coffee cup, pastel style: a striped mug in the page's colors. On hover a little heart
+// rises out of it instead of steam.
+---
+<svg class="cup" viewBox="0 0 64 64" aria-hidden="true">
+  <path class="heart" d="M32 22c-5-4-10-7-10-11 0-3 2-5 5-5 2 0 4 1 5 3 1-2 3-3 5-3 3 0 5 2 5 5 0 4-5 7-10 11z" />
+  <g class="mug">
+    <rect x="12" y="26" width="34" height="30" fill="var(--lilac)" />
+    <rect x="12" y="34" width="34" height="7" fill="var(--mint)" />
+    <rect x="12" y="41" width="34" height="7" fill="var(--peach)" />
+    <rect x="12" y="48" width="34" height="8" fill="var(--butter)" />
+    <path class="line" d="M46 31h8v15h-8" />
+  </g>
+</svg>
+
+<style>
+  .cup { width: 64px; height: 64px; flex: none; overflow: visible; }
+  .mug { filter: drop-shadow(4px 4px 0 var(--accent)); }
+  .line { fill: none; stroke: var(--sky); stroke-width: 4; }
+  .heart { fill: var(--peach); opacity: 0; transform-origin: 32px 16px; }
+
+  :global(a:hover) > .cup .heart, :global(a:focus-visible) > .cup .heart { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(a:hover) > .cup .heart,
+    :global(a:focus-visible) > .cup .heart { animation: float 1.6s ease-in-out infinite; }
+  }
+  @keyframes float {
+    from { transform: translateY(6px) scale(0.6); opacity: 0; }
+    35% { opacity: 1; }
+    to { transform: translateY(-8px) scale(1); opacity: 0; }
+  }
+</style>
