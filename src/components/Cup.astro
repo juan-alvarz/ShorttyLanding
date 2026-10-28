@@ -1,0 +1,38 @@
+---
+// The footer's coffee cup, sunset style: a white mug with the sun setting into it, in the page's
+// dawn-to-rose colors. On hover the sun rises out of the cup and its rays come up as steam.
+---
+<svg class="cup" viewBox="0 0 72 72" aria-hidden="true">
+  <defs>
+    <linearGradient id="cup-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe28c" />
+      <stop offset="0.55" stop-color="#f8682e" />
+      <stop offset="1" stop-color="#ff4f7b" />
+    </linearGradient>
+    <clipPath id="cup-above"><rect x="0" y="0" width="72" height="31" /></clipPath>
+  </defs>
+  <g class="rays">
+    <path d="M36 6v6M20 13l4 4M52 13l-4 4" />
+  </g>
+  <g clip-path="url(#cup-above)">
+    <circle class="sun" cx="36" cy="33" r="13" fill="url(#cup-sun)" />
+  </g>
+  <path class="mug" d="M12 31h48v14c0 11-9 19-20 19h-8c-11 0-20-8-20-19z" />
+  <path class="handle" d="M60 36h2c4 0 6 3 6 6s-2 7-6 7h-4" />
+</svg>
+
+<style>
+  .cup { width: 64px; height: 64px; flex: none; overflow: visible; }
+  .mug { fill: var(--white); }
+  .handle { fill: none; stroke: var(--white); stroke-width: 4.5; }
+  .rays path { fill: none; stroke: #ffe28c; stroke-width: 3; stroke-linecap: round; opacity: 0; }
+  .sun { transition: transform 0.5s cubic-bezier(.2,.8,.2,1); }
+
+  :global(a:hover) > .cup .sun, :global(a:focus-visible) > .cup .sun { transform: translateY(-7px); }
+  :global(a:hover) > .cup .rays path, :global(a:focus-visible) > .cup .rays path { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(a:hover) > .cup .rays, :global(a:focus-visible) > .cup .rays { animation: shine 1.6s ease-in-out infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) { .sun { transition: none; } }
+  @keyframes shine { 50% { opacity: 0.5; transform: translateY(-2px); } }
+</style>
