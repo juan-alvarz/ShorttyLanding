@@ -1,0 +1,31 @@
+---
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.currentLocale).edit;
+---
+<section class="band" id="edit">
+  <div class="wrap">
+    <span class="label">{t.label}</span>
+    <h2>{t.title}</h2>
+    <p class="lead">{t.lead}</p>
+    <ul>
+      {t.tools.map(([keys, name, text]) => (
+        <li>
+          <span class="keys">{keys.split(' ').map((key) => <kbd>{key}</kbd>)}</span>
+          <h3>{name}</h3>
+          <p>{text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 48px; list-style: none; margin: 72px 0 0; padding: 0; }
+  li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 8px; }
+  .keys { grid-row: span 2; display: flex; gap: 2px; }
+  kbd { font: 400 0.82rem/1.9 var(--mono); color: var(--on-light-muted); }
+  p { color: var(--on-light-muted); font-size: 0.95rem; }
+
+  @media (max-width: 860px) { ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { ul { grid-template-columns: minmax(0, 1fr); } }
+</style>

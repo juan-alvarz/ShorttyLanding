@@ -1,16 +1,41 @@
 ---
-import { REPO, LICENSE } from '../config';
+import { REPO, RELEASES, SUPPORT } from '../config';
 import { useTranslations } from '../i18n';
+import { toAscii } from '../lib/ascii';
+import Cup from './Cup.astro';
+
 const t = useTranslations(Astro.currentLocale).footer;
+const cat = await toAscii('public/icon.svg', 64, 30);
 ---
-<footer>
-  <div class="wrap">
-    <p>{t.license} <a href={LICENSE}>{t.licenseLink}</a>.</p>
-    <p><a href={REPO}>{t.source}</a> · <a href={`${REPO}/issues`}>{t.issues}</a></p>
+<footer class="band">
+  <div class="wrap grid">
+    <pre aria-hidden="true">{cat}</pre>
+    <div class="text">
+      <p class="name">shortty</p>
+      <p>{t.tagline}</p>
+      <p>{t.license}</p>
+      <ul>
+        <li><a href={REPO}>{t.source}</a></li>
+        <li><a href={RELEASES}>{t.releases}</a></li>
+        <li><a href={`${REPO}/issues`}>{t.issues}</a></li>
+      </ul>
+      <a class="support" href={SUPPORT}>
+        <Cup />
+        <span><strong>{t.support}</strong> {t.supportNote}</span>
+      </a>
+    </div>
   </div>
 </footer>
 
 <style>
-  footer { background: var(--bg-alt); padding: 48px 0; color: var(--muted); font: 0.9rem var(--mono); }
-  footer p { margin: 0 0 0.5em; }
+  footer { padding-block: 64px 80px; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: 24px; }
+  pre { margin: 0; color: #d4d4d4; font-size: 5px; line-height: 1.1; }
+  .text { display: grid; justify-items: center; gap: 4px; color: var(--on-light-muted); font-size: 0.9rem; }
+  .name { font: 600 1rem/1 var(--display); color: var(--dark); margin-bottom: 8px; }
+  ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; list-style: none; margin: 14px 0 0; padding: 0; }
+  /* One quiet line: a thin cup and a word. */
+  .support { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; color: var(--on-light-muted); text-decoration: none; font-size: 0.85rem; }
+  .support strong { color: var(--dark); font-weight: 500; }
+  .support:hover strong { color: var(--accent); }
 </style>

@@ -1,71 +1,153 @@
-/* Dark, flat, sharp. No borders, no rounded corners: color blocks and one hard accent. */
+/*
+  Layout (version 15, minimal): white, black and one orange, with as much air as possible.
+  Hanken Grotesk set light and large, a narrow centered reading column, no color bands:
+  sections are separated by space alone. Orange appears only where Shortty itself would
+  draw it: the selection, its handles and size tag. Sharp corners, no card borders.
+*/
+@import '@fontsource/hanken-grotesk/latin-300';
+@import '@fontsource/hanken-grotesk/latin-400';
+@import '@fontsource/hanken-grotesk/latin-600';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+
 :root {
-  --bg: #0e0d10;
-  --bg-alt: #17151b;
-  --panel: #1f1c25;
-  --text: #f6f3ee;
-  --muted: #a39fae;
+  color-scheme: light;
+
+  /* Color, named by role. Here: light = white, dark = near-black, accent = Shortty orange. */
+  --primary: #ffffff;
+  --dark: #121212;
+  --dark-raised: #1f1f1f;
+  --light: #ffffff;
+  --light-raised: #f5f5f5;
   --accent: #ff6b3d;
-  --accent-2: #ff3d81;
-  --accent-text: #170a05;
-  --max: 1120px;
-  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --white: #ffffff;
+  --on-dark-muted: #9b9b9b;
+  --on-light-muted: #6e6e6e;
+
+  /* Type */
+  --display: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --step-0: 1.02rem;
+  --step-1: 1.2rem;
+  --step-2: clamp(1.3rem, 2.4vw, 1.6rem);
+  --step-3: clamp(2rem, 4.4vw, 3.2rem);
+  --step-4: clamp(3rem, 8vw, 6.4rem);
+
+  --max: 1040px;
+  --narrow: 680px;
 }
 
-* { box-sizing: border-box; border-radius: 0; }
+* { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* --nav-h is the sticky nav's height, kept up to date by src/scripts/scroll.ts. */
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h, 76px); }
+/* Lenis does the easing when it runs; the browser's own would fight it. */
+html.lenis.lenis-smooth { scroll-behavior: auto; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 18px/1.6 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  font: 400 var(--step-0)/1.7 var(--display);
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--accent); text-underline-offset: 3px; }
+a { color: inherit; text-underline-offset: 5px; text-decoration-thickness: 1px; text-decoration-color: #c8c8c8; }
+a:hover { text-decoration-color: var(--dark); }
+:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
-h1, h2, h3 { line-height: 1.05; margin: 0 0 0.5em; letter-spacing: -0.035em; font-weight: 800; }
-h1 { font-size: clamp(2.8rem, 8vw, 6rem); }
-h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
-h3 { font-size: 1.2rem; letter-spacing: -0.015em; }
-p { margin: 0 0 1em; }
+h1, h2, h3 { margin: 0; font-weight: 300; text-wrap: balance; }
+h2 { font: 300 var(--step-3)/1.1 var(--display); letter-spacing: -0.03em; }
+h3 { font: 600 var(--step-0)/1.4 var(--display); }
+p { margin: 0; }
+strong { font-weight: 600; }
 
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-section { padding: 96px 0; }
-section.alt { background: var(--bg-alt); }
-.lead { color: var(--muted); font-size: 1.2rem; max-width: 56ch; }
+code, pre { font-family: var(--mono); font-size: 0.88em; }
 
-.label {
-  display: inline-block;
-  font: 600 0.8rem/1 var(--mono);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  margin-bottom: 18px;
+/* No bands: every section is white, separated by space. */
+.band { padding-block: clamp(96px, 14vw, 200px); background: var(--light); color: var(--dark); }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
+
+/* Section eyebrow: a quiet word. */
+.label {
+  display: block;
+  margin-bottom: 18px;
+  font: 400 0.82rem/1 var(--display);
+  color: var(--on-light-muted);
+}
+
+.lead { font-size: var(--step-1); font-weight: 300; max-width: 46ch; margin-top: 18px; color: var(--on-light-muted); }
 
 .button {
-  display: inline-block;
-  padding: 16px 28px;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  font: 400 var(--step-0)/1 var(--display);
   text-decoration: none;
-  background: var(--accent);
-  color: var(--accent-text);
-  transition: transform 0.12s, box-shadow 0.12s;
+  background: var(--dark);
+  color: var(--white);
 }
-.button.secondary { background: var(--panel); color: var(--text); }
-.button:hover { transform: translate(-3px, -3px); box-shadow: 3px 3px 0 var(--accent-2); }
-:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+.button:hover { background: #3a3a3a; color: var(--white); }
+.button.ghost { background: transparent; color: var(--on-light-muted); padding-inline: 4px; }
+.button.ghost:hover { color: var(--dark); background: transparent; }
 
-code, pre { font-family: var(--mono); font-size: 0.9em; }
-code { background: var(--panel); padding: 0.15em 0.45em; }
-pre { background: var(--panel); padding: 18px 20px; overflow-x: auto; border-left: 6px solid var(--accent); }
-pre code { padding: 0; background: none; }
+/* Thin viewfinder corners around whatever it wraps, like the app icon. */
+.viewfinder {
+  --c: #c8c8c8;
+  --len: 20px;
+  --w: 1px;
+  padding: 14px;
+  background:
+    linear-gradient(var(--c) 0 0) top left / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) top left / var(--w) var(--len),
+    linear-gradient(var(--c) 0 0) top right / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) top right / var(--w) var(--len),
+    linear-gradient(var(--c) 0 0) bottom left / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) bottom left / var(--w) var(--len),
+    linear-gradient(var(--c) 0 0) bottom right / var(--len) var(--w),
+    linear-gradient(var(--c) 0 0) bottom right / var(--w) var(--len);
+  background-repeat: no-repeat;
+}
+
+/* A selection rectangle with square handles and a size tag, like Shortty's own. */
+.selection {
+  position: relative;
+  outline: 1px solid var(--accent);
+}
+.selection > .handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--white);
+  outline: 1px solid var(--accent);
+}
+.selection > .handle:nth-of-type(1) { top: -4px; left: -4px; }
+.selection > .handle:nth-of-type(2) { top: -4px; right: -4px; }
+.selection > .handle:nth-of-type(3) { bottom: -4px; left: -4px; }
+.selection > .handle:nth-of-type(4) { bottom: -4px; right: -4px; }
+.selection > .size {
+  position: absolute;
+  left: -1px;
+  top: calc(100% + 8px);
+  padding: 3px 6px;
+  white-space: nowrap;
+  font: 400 0.7rem/1 var(--mono);
+  letter-spacing: 0;
+  background: var(--accent);
+  color: var(--dark);
+}
+
+/* A section reached from the nav is focused for keyboard users, but needs no outline. */
+section[tabindex='-1']:focus, header[tabindex='-1']:focus { outline: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .button { transition: none; }
 }
