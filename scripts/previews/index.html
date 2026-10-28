@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Shortty landing previews</title>
+  <link rel="icon" type="image/svg+xml" href="01-cobalt/icon.svg" />
+  <script>
+    // ?variant=22-cobalt-cat (or versions/22-cobalt-cat, or just 22) opens that variant.
+    // A #section on the link is kept, so ?variant=22#releases lands on Releases.
+    const VARIANTS = ['01-cobalt', '17-cat', '21-cat-cobalt', '22-cobalt-cat'];
+    const asked = new URLSearchParams(location.search).get('variant');
+    if (asked) {
+      const name = asked.replace(/^versions\//, '').replace(/\/$/, '');
+      const match = VARIANTS.find((v) => v === name || v.split('-')[0] === name);
+      if (match) location.replace(`${match}/${location.hash}`);
+      else document.documentElement.dataset.unknown = asked;
+    }
+  </script>
+  <style>
+    :root { color-scheme: dark; --ink: #0b0d1c; --raised: #161a36; --muted: #8f96c4; --accent: #ff6b3d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--ink); color: #fff; font: 400 16px/1.6 ui-monospace, 'SF Mono', Menlo, monospace; }
+    main { max-width: 720px; margin: 0 auto; padding: 56px 16px; }
+    h1 { margin: 0 0 8px; font: 600 1.6rem/1.2 ui-sans-serif, system-ui, sans-serif; }
+    p { margin: 0 0 32px; color: var(--muted); }
+    .unknown { display: none; color: var(--accent); }
+    [data-unknown] .unknown { display: block; }
+    ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    a { display: grid; grid-template-columns: 3ch 1fr auto; gap: 12px; align-items: baseline; padding: 18px 20px; background: var(--raised); color: #fff; text-decoration: none; }
+    a:hover, a:focus-visible { background: var(--accent); color: var(--ink); outline: none; }
+    a:hover small, a:focus-visible small { color: var(--ink); }
+    small { color: var(--muted); }
+    code { color: #fff; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Shortty landing previews</h1>
+    <p class="unknown">There's no preview called that. Pick one below.</p>
+    <p>Open one below, or link straight to it with <code>?variant=</code> and the branch name, e.g. <code>?variant=22-cobalt-cat</code>.</p>
+    <ul>
+      <li><a href="?variant=01-cobalt"><span>01</span><span>Cobalt</span><small>versions/01-cobalt</small></a></li>
+      <li><a href="?variant=17-cat"><span>17</span><span>Cat</span><small>versions/17-cat</small></a></li>
+      <li><a href="?variant=21-cat-cobalt"><span>21</span><span>Cat in cobalt colors</span><small>versions/21-cat-cobalt</small></a></li>
+      <li><a href="?variant=22-cobalt-cat"><span>22</span><span>Cobalt in cat colors</span><small>versions/22-cobalt-cat</small></a></li>
+    </ul>
+  </main>
+</body>
+</html>
