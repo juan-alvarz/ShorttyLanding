@@ -13,7 +13,8 @@
   color-scheme: dark;
 
   /* Color, named by role. Version 17's palette: primary = Shortty orange, dark = the icon's
-     charcoal, light = blush, white = cream, accent = Shortty orange (cream on orange surfaces). */
+     charcoal, light = blush, white = cream, accent = Shortty orange (cream on orange surfaces).
+     Text on orange is white, for contrast and visibility. */
   --primary: #ff6b3d;
   --primary-deep: #e8521f;
   --dark: #1f1e24;
@@ -22,8 +23,9 @@
   --light-raised: #ffd9c9;
   --accent: #ff6b3d;
   --white: #fffaf7;
-  --on-primary: #1f1e24;
-  --on-primary-muted: #4a2418;
+  --on-primary: #ffffff;
+  --on-primary-muted: #ffe9df;
+  --on-accent: #ffffff;
   --on-dark-muted: #b3adb8;
   --on-light-muted: #6f4d42;
 
@@ -70,8 +72,9 @@ code, pre { font-family: var(--mono); }
 /* A full-width color band with a centered inner column. */
 .band { padding-block: clamp(72px, 10vw, 140px); }
 .band.primary { background: var(--primary); color: var(--on-primary); }
-/* On orange surfaces an orange accent would vanish: there frames, corners and buttons go cream. */
-.band.primary, .hero, .navbar { --accent: var(--white); }
+/* On orange surfaces an orange accent would vanish: there frames, corners and buttons go cream,
+   with charcoal text on them. */
+.band.primary, .hero, .navbar { --accent: var(--white); --on-accent: var(--dark); }
 .band.light { background: var(--light); color: var(--dark); }
 .band.dark { background: var(--dark); color: var(--white); }
 
@@ -107,11 +110,12 @@ code, pre { font-family: var(--mono); }
   font: 600 var(--step-0)/1 var(--mono);
   text-decoration: none;
   background: var(--accent);
-  color: var(--dark);
+  color: var(--on-accent);
 }
 .button:hover { background: var(--white); color: var(--dark); }
 .button.ghost { background: transparent; color: inherit; padding-inline: 4px; text-decoration: underline; }
 .button.ghost:hover { color: var(--accent); }
+.band.primary .button.ghost:hover, .hero .button.ghost:hover { color: var(--dark); }
 
 /* Accent viewfinder corners around whatever it wraps, like the app icon. */
 .viewfinder {
@@ -156,7 +160,7 @@ code, pre { font-family: var(--mono); }
   font: 500 0.75rem/1 var(--mono);
   letter-spacing: 0.04em;
   background: var(--accent);
-  color: var(--dark);
+  color: var(--on-accent);
 }
 
 /* A section reached from the nav is focused for keyboard users, but needs no outline. */
