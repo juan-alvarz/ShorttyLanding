@@ -1,0 +1,27 @@
+---
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.currentLocale).extras;
+---
+<section class="band primary" id="extras">
+  <div class="wrap">
+    <span class="label">{t.label}</span>
+    <h2>{t.title}</h2>
+    <ul>
+      {t.items.map(([name, text]) => (
+        <li>
+          <h3>{name}</h3>
+          <p>{text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 48px; list-style: none; margin: 72px 0 0; padding: 0; }
+  h3 { font: var(--step-2)/1.1 var(--display); letter-spacing: -0.01em; margin-bottom: 14px; }
+  p { color: var(--on-primary-muted); max-width: 40ch; }
+
+  @media (max-width: 900px) { ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { ul { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
+</style>
