@@ -151,7 +151,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     gap: 48px;
     padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 88px);
   }
-  h1 { font: var(--step-4)/0.92 var(--display); letter-spacing: -0.035em; }
+  /* The headline stays charcoal; the rest of the text on orange is white. */
+  h1 { font: var(--step-4)/0.92 var(--display); letter-spacing: -0.035em; color: var(--dark); }
   h1 > span { display: block; width: fit-content; }
   h1 .selection { margin-block: 0.08em 0.3em; padding-inline: 0.06em; }
   h1 .size { font-size: 0.8rem; }
