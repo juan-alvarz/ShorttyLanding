@@ -1,35 +1,189 @@
 ---
 import { Image } from 'astro:assets';
-import icon from '../assets/icon.png';
 import hero from '../assets/hero.png';
-import { RELEASES } from '../config';
+import { RELEASES, REPO } from '../config';
 import { useTranslations } from '../i18n';
-const t = useTranslations(Astro.currentLocale).hero;
+
+const t = useTranslations(Astro.currentLocale);
+const [before, selected, after] = t.hero.headline;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<header class="hero">
-  <div class="wrap">
-    <Image src={icon} alt="" width={88} height={88} class="icon" />
-    <h1>{t.headline[0]}<br /><span>{t.headline[1]}</span></h1>
-    <p class="lead">{t.lead}</p>
-    <p class="actions">
-      <a class="button" href={RELEASES}>{t.download}</a>
-      <a class="button secondary" href="#install">{t.install}</a>
-    </p>
-    <p class="note">{t.note}</p>
-    <Image src={hero} alt={t.heroAlt} widths={[640, 1080, 1600]} sizes="(min-width: 1120px) 1088px, 100vw" class="shot" loading="eager" />
+<!-- Sticky: stays at the top while scrolling and marks the section on screen (see src/scripts/scroll.ts). -->
+<div class="navbar" data-navbar>
+  <nav class="wrap" aria-label={t.nav.label}>
+    <a class="brand" href="#top" aria-label="Shortty">
+      <img src={`${base}/icon.svg`} alt="" width="36" height="36" />
+      <span>shortty</span>
+      <span class="where" data-where aria-hidden="true"></span>
+    </a>
+    <ul>
+      <li class="optional"><a href="#capture" data-nav>{t.nav.capture}</a></li>
+      <li class="optional"><a href="#edit" data-nav>{t.nav.edit}</a></li>
+      <li class="optional"><a href="#layouts" data-nav>{t.nav.layouts}</a></li>
+      <li class="optional"><a href="#install" data-nav>{t.nav.install}</a></li>
+      <li class="optional"><a href="#releases" data-nav>{t.nav.releases}</a></li>
+      <li class="github"><a href={REPO}>{t.nav.github}</a></li>
+      <li><a class="button" href={RELEASES}>{t.nav.download}</a></li>
+    </ul>
+  </nav>
+</div>
+
+<header class="hero" id="top" data-capture-area data-try-text={`${t.hero.tryIt} →`} data-try-href={RELEASES}>
+  <div class="wrap intro">
+    <h1>
+      <span>{before}</span>
+      <span class="selection" data-measure>
+        {selected}
+        <i class="handle"></i><i class="handle"></i><i class="handle"></i><i class="handle"></i>
+        <span class="size" aria-hidden="true">— × —</span>
+      </span>
+      <span>{after}</span>
+    </h1>
+    <div class="side">
+      <p class="lead">{t.hero.lead}</p>
+      <p class="actions">
+        <a class="button" href={RELEASES}>{t.hero.download} ↓</a>
+        <a class="button ghost" href="#install">{t.hero.install}</a>
+      </p>
+      <p class="hint" aria-hidden="true">+ {t.hero.hint}</p>
+    </div>
   </div>
+
+  <figure class="shot wrap">
+    <div class="viewfinder">
+      <Image src={hero} alt={t.hero.shotAlt} widths={[640, 1080, 1600]} sizes="(min-width: 1200px) 1130px, 100vw" loading="eager" />
+    </div>
+    <figcaption>{t.hero.shotLabel}</figcaption>
+  </figure>
 </header>
+
+<script>
+  // Shows the real size of the framed headline word, and lets mouse users drag
+  // a selection over the hero, like Shortty's Capture Region.
+  const area = document.querySelector<HTMLElement>('[data-capture-area]')!;
+  const measured = area.querySelector<HTMLElement>('[data-measure]')!;
+
+  const sizeText = (w: number, h: number) => `${Math.round(w)} × ${Math.round(h)}`;
+  const showMeasured = () => {
+    const r = measured.getBoundingClientRect();
+    measured.querySelector('.size')!.textContent = sizeText(r.width, r.height);
+  };
+  showMeasured();
+  addEventListener('resize', showMeasured);
+
+  let box: HTMLElement | null = null;
+  let start = { x: 0, y: 0 };
+
+  const clear = () => { box?.remove(); box = null; };
+
+  area.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch' || e.button !== 0) return;
+    if ((e.target as Element).closest('a, button, nav')) return;
+    clear();
+    const origin = area.getBoundingClientRect();
+    start = { x: e.clientX - origin.left, y: e.clientY - origin.top };
+    box = document.createElement('div');
+    box.className = 'selection live';
+    box.innerHTML = '<i class="handle"></i><i class="handle"></i><i class="handle"></i><i class="handle"></i><span class="size"></span>';
+    area.append(box);
+    area.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  });
+
+  area.addEventListener('pointermove', (e) => {
+    if (!box || !area.hasPointerCapture(e.pointerId)) return;
+    const origin = area.getBoundingClientRect();
+    const x = e.clientX - origin.left;
+    const y = e.clientY - origin.top;
+    const w = Math.abs(x - start.x);
+    const h = Math.abs(y - start.y);
+    Object.assign(box.style, {
+      left: `${Math.min(x, start.x)}px`,
+      top: `${Math.min(y, start.y)}px`,
+      width: `${w}px`,
+      height: `${h}px`,
+    });
+    box.querySelector('.size')!.textContent = sizeText(w, h);
+  });
+
+  area.addEventListener('pointerup', (e) => {
+    if (!box || !area.hasPointerCapture(e.pointerId)) return;
+    area.releasePointerCapture(e.pointerId);
+    if (box.offsetWidth < 12 || box.offsetHeight < 12) return clear();
+    const link = document.createElement('a');
+    link.className = 'try';
+    link.href = area.dataset.tryHref!;
+    link.textContent = area.dataset.tryText!;
+    box.append(link);
+  });
+
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') clear(); });
+</script>
 
 <style>
   .hero {
-    padding: 72px 0 96px;
-    background:
-      radial-gradient(60% 50% at 15% 0%, rgb(255 107 61 / 0.35), transparent 70%),
-      radial-gradient(50% 45% at 90% 20%, rgb(255 61 129 / 0.25), transparent 70%);
+    position: relative;
+    cursor: crosshair;
+    background: linear-gradient(var(--primary) 0 70%, var(--dark) 70%);
+    color: var(--on-primary);
   }
-  .icon { margin-bottom: 32px; }
-  h1 span { color: var(--accent); }
-  .actions { display: flex; gap: 14px; flex-wrap: wrap; margin: 32px 0 14px; }
-  .note { color: var(--muted); font: 0.85rem var(--mono); }
-  .shot { margin-top: 56px; box-shadow: 14px 14px 0 var(--accent); }
+  .hero a { cursor: pointer; }
+
+  .navbar { position: sticky; top: 0; z-index: 50; background: var(--primary); color: var(--on-primary); transition: box-shadow 0.2s; }
+  .navbar[data-scrolled] { box-shadow: 0 12px 32px -18px rgb(0 0 0 / 0.55); }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
+  .brand { display: flex; align-items: center; gap: 10px; font: 600 1.05rem/1 var(--mono); text-decoration: none; }
+  .brand img { width: 36px; height: 36px; }
+  .where { display: none; color: var(--on-primary-muted); font-weight: 500; }
+  .where:not(:empty)::before { content: '/ '; }
+  nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  nav ul a:not(.button) { position: relative; text-decoration: none; }
+  nav ul a:not(.button):hover { color: var(--dark); }
+  /* The section on screen gets the label's accent square. */
+  nav ul a[aria-current]::before { content: ''; position: absolute; left: -14px; top: calc(50% - 3px); width: 7px; height: 7px; background: var(--accent); }
+  nav .button { padding: 12px 18px; }
+  nav .button:hover { background: var(--dark); color: var(--white); }
+
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 48px;
+    padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 88px);
+  }
+  /* The headline stays charcoal; the rest of the text on orange is white. */
+  h1 { font: var(--step-4)/0.92 var(--display); letter-spacing: -0.035em; color: var(--dark); }
+  h1 > span { display: block; width: fit-content; }
+  h1 .selection { margin-block: 0.08em 0.3em; padding-inline: 0.06em; }
+  h1 .size { font-size: 0.8rem; }
+
+  .side { display: flex; flex-direction: column; gap: 28px; }
+  .side .lead { margin: 0; color: var(--on-primary); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .hint { color: var(--on-primary-muted); font-size: 0.8rem; letter-spacing: 0.04em; }
+
+  .shot { margin-top: 0; margin-bottom: 0; padding-bottom: clamp(48px, 7vw, 96px); }
+  .shot :global(img) { width: 100%; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.6); }
+  figcaption { margin-top: 14px; color: var(--on-dark-muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .hero :global(.selection.live) { position: absolute; z-index: 5; pointer-events: none; background: rgb(255 255 255 / 0.06); }
+  .hero :global(.try) { pointer-events: auto; position: absolute; left: -1px; top: calc(100% + 34px); padding: 6px 10px; background: var(--white); color: var(--dark); font: 600 0.8rem/1 var(--mono); text-decoration: none; white-space: nowrap; }
+  .hero :global(.try:hover) { background: var(--dark); color: var(--white); }
+
+  @media (max-width: 900px) {
+    .intro { grid-template-columns: minmax(0, 1fr); }
+    .optional { display: none; }
+    .where { display: inline; }
+    .hint { display: none; }
+  }
+
+  /* On phones the headline lines sit close together: leave room for the size tag under the frame. */
+  @media (max-width: 600px) {
+    h1 .selection { margin-bottom: 40px; }
+  }
+
+  /* Phones: the section name takes the GitHub link's place (it is in the footer too). */
+  @media (max-width: 480px) {
+    .github { display: none; }
+  }
 </style>
