@@ -135,6 +135,13 @@ export const en = {
     all: 'All releases',
   },
 
+  star: {
+    label: 'Star',
+    title: 'Like it? Give it a star.',
+    lead: 'Shortty is built in the open by one person. A star on GitHub costs nothing and helps other Mac users find it.',
+    button: 'Star on GitHub',
+  },
+
   footer: {
     tagline: 'A free screenshot tool for macOS.',
     license: 'Free and open source under the MIT license.',
