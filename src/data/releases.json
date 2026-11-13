@@ -1,0 +1,92 @@
+[
+  {
+    "tag_name": "v1.3.3",
+    "name": "Shortty 1.3.3",
+    "published_at": "2026-10-27T19:32:44Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.3.3",
+    "body": "- The ruler lets go of its copy of the screen as soon as you put it away.\n- The disk image script stops if a Shortty disk is already mounted, and detaches it if something fails.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.3.2",
+    "name": "Shortty 1.3.2",
+    "published_at": "2026-10-27T19:27:36Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.3.2",
+    "body": "- **Ruler** (`U`): point at something to measure it. Lines run to the nearest edges with their length in pixels; hold `1` or `2` to measure one way.\n- Shift+Control snaps pencil lines to 45° steps.\n- New artwork for the disk image window.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.3.1",
+    "name": "Shortty 1.3.1",
+    "published_at": "2026-10-27T17:43:12Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.3.1",
+    "body": "- Shortty now ships as a styled disk image: open it and drag Shortty onto Applications.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.3.0",
+    "name": "Shortty 1.3.0",
+    "published_at": "2026-10-27T04:30:07Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.3.0",
+    "body": "- **Text Card** (`K`): drag over code, a terminal or a chat and it is redrawn as a clean, window-like card, every word in the color it had.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.2.2",
+    "name": "Shortty 1.2.2",
+    "published_at": "2026-10-27T03:56:53Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.2.2",
+    "body": "- Selection overlays follow your Mac's accent color, or a color you pick in Settings.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.2.1",
+    "name": "Shortty 1.2.1",
+    "published_at": "2026-10-26T22:53:34Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.2.1",
+    "body": "- **After a capture**: show the editor, a quick card or nothing, and optionally copy and save right away.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.2.0",
+    "name": "Shortty 1.2.0",
+    "published_at": "2026-10-25T00:48:50Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.2.0",
+    "body": "- New icon: a neon cat drawn with the viewfinder's corners.\n- While a window is open Shortty acts like a regular app, in the Dock and ⌘Tab.\n- Copy and Save say where the picture went.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.1.0",
+    "name": "Shortty 1.1.0",
+    "published_at": "2026-10-24T21:15:12Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.1.0",
+    "body": "- Each capture keeps its edits, and the recent captures show them.\n- No shortcuts are set out of the box: pick your own.\n- Press Esc twice to close the editor.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  },
+  {
+    "tag_name": "v1.0.0",
+    "name": "Shortty 1.0.0",
+    "published_at": "2026-10-22T22:30:56Z",
+    "html_url": "https://github.com/juan-alvarz/Shortty/releases/tag/v1.0.0",
+    "body": "- First release: every kind of capture, an editor where nothing gets flattened, four editor layouts, the quick card and the recent captures bar.",
+    "draft": false,
+    "prerelease": false,
+    "assets": []
+  }
+]
