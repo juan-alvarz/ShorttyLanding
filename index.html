@@ -9,7 +9,7 @@
   <script>
     // ?variant=22-cobalt-cat (or versions/22-cobalt-cat, or just 22) opens that variant.
     // A #section on the link is kept, so ?variant=22#releases lands on Releases.
-    const VARIANTS = ['01-cobalt', '17-cat', '21-cat-cobalt', '22-cobalt-cat'];
+    const VARIANTS = ['main', '01-cobalt', '17-cat', '21-cat-cobalt', '22-cobalt-cat'];
     const asked = new URLSearchParams(location.search).get('variant');
     if (asked) {
       const name = asked.replace(/^versions\//, '').replace(/\/$/, '');
@@ -41,6 +41,7 @@
     <p class="unknown">There's no preview called that. Pick one below.</p>
     <p>Open one below, or link straight to it with <code>?variant=</code> and the branch name, e.g. <code>?variant=22-cobalt-cat</code>.</p>
     <ul>
+      <li><a href="?variant=main"><span>★</span><span>Latest (main)</span><small>main</small></a></li>
       <li><a href="?variant=01-cobalt"><span>01</span><span>Cobalt</span><small>versions/01-cobalt</small></a></li>
       <li><a href="?variant=17-cat"><span>17</span><span>Cat</span><small>versions/17-cat</small></a></li>
       <li><a href="?variant=21-cat-cobalt"><span>21</span><span>Cat in cobalt colors</span><small>versions/21-cat-cobalt</small></a></li>
